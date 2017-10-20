@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!--/*/ <th:block th:include="fragments/head :: head"/> /*/-->
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="box col-md-6 col-md-offset-3">
+                    <div class="stormpath-header">
+                        <img src="https://stormpath.com/images/template/logo-nav.png"/>
+                    </div>
+
+                    <h1 th:inline="text">Hello, [[${account.fullName}]]!</h1>
+                    <form method="post" th:action="@{/logout}">
+                        <input type="submit" class="btn btn-danger" value="Logout"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
