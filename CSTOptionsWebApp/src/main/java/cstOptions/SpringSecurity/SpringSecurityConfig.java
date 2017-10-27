@@ -21,9 +21,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-					.antMatchers("/", "/home", "/login", "/user", "/done").permitAll()
+					.antMatchers("/index", "/home", "/login", "/user", "/done").permitAll()
 					.antMatchers("/admin/**").hasAnyRole("ADMIN")
 					.antMatchers("/user/**").hasAnyRole("USER")
+					.antMatchers("/superuser/**").hasAnyRole("SUPER")
 					.anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -41,8 +42,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
+                .withUser("user").password("password").roles("USER") /* Test roles */
                 .and()
-                .withUser("admin").password("password").roles("ADMIN");
+                .withUser("admin").password("password").roles("ADMIN") /* Test roles */
+                .and()
+                .withUser("whosyourdaddy").password("allyourbasearebelongtome").roles("SUPER"); /* Test roles */
+        
+        	/* Add your own USER and PASSWORD pair here, one for each person if necessary. */
+		
     }
 }

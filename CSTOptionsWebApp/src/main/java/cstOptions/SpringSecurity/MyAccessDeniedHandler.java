@@ -17,6 +17,8 @@ import java.io.IOException;
 @Component
 public class MyAccessDeniedHandler implements AccessDeniedHandler {
 
+	/* logger will log any attempts to access a part of the web server where the individual does not have authorization */
+	
     private static Logger logger = LoggerFactory.getLogger(MyAccessDeniedHandler.class);
 
     @Override

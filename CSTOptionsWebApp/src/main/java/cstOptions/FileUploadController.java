@@ -32,7 +32,7 @@ public class FileUploadController {
 		this.storageService = storageService;
 	}
 
-	@GetMapping("/")
+	@GetMapping("/superuser/upload")
 	public String listUploadedFiles(Model model) throws IOException {
 
 		model.addAttribute("files",

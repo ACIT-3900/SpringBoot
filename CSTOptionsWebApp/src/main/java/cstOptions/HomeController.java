@@ -15,6 +15,11 @@ public class HomeController {
         return "home";
     }
     
+    @RequestMapping("/")
+    public String def() {
+        return "index";
+    }
+    
     @RequestMapping("/index")
     public String index() {
         return "index";
@@ -47,7 +52,7 @@ public class HomeController {
     
     @RequestMapping("/403")
     public String error403() {
-    	return "/error/403";
+    	return "../public/error/403";
     }
     
 
