@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <head>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+        </style>
+        <title>Students Home Page</title></head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+    <div id="container">
+        <h1>Student Container</h1>
+        <button id="mybut" type="button">Request Data</button>
+        <div id="stuContainer">
+            <table id="stuTable">
+              <tr>
+                <th>Name</th>
+                <th>GPA</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Assigned Option</th>
+                <th>Student Choices</th>
+              </tr>
+            </table>
+        </div>
+    </div>
+    
+    
+    <script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+        var myTable = document.getElementById("stuTable");
+        
+        document.getElementById("mybut").addEventListener("click", function(){
+            $.ajax({
+              url: "/students/getStudentName",
+              type:"get",
+              success: function(resp){
+                  console.log(resp);
+                  for(var i=0; i < resp.length; i++) {
+                    var tr = document.createElement("tr");
+                    var txt = document.createTextNode(resp[i]);
+                    tr.appendChild(txt)
+                    myTable.appendChild(tr);
+                }
+              }
+            });
+        });
+    /*]]>*/
+    </script>
+</body>
+</html> 

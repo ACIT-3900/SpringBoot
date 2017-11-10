@@ -1,11 +1,12 @@
 package cstOptions;
 
-import cstOptions.Service.StudentService;
+import cstOptions.Dao.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
@@ -13,10 +14,11 @@ import java.util.Collection;
 public class StudentController {
 
     @Autowired
-    private StudentService studentService;
+    private StudentDao studentDao;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public void getAllStudents(){
-        studentService.getAllStudents();
+    @RequestMapping(value = "/getStudentName", method = RequestMethod.GET)
+    public ArrayList<String> getAllStudents(){
+        return studentDao.getAllStudents();
     }
+
 }

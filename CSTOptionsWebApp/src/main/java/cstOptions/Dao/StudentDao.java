@@ -19,7 +19,9 @@ public class StudentDao {
     private static ArrayList<Options> optionlist;
 
 
-    public void getAllStudents(){
+    public HashMap<String, String> getAllStudents(){
+        ArrayList<HashMap> studentList = new ArrayList<>();
+        HashMap<String, String> studentInfo = new HashMap<>();
         try
         {
 
@@ -31,14 +33,14 @@ public class StudentDao {
 
             //Print Student List
             for(Student s:stulist){
-                System.out.println(s.getID()+"\n"+s.getName()+"\nGPA: "+s.getGPA()+"\n"+s.getPriority()+"\n"+s.getStatus()+"\n"+s.printStudentChoices());
-                System.out.println("---------***--------");
+                studentInfo.ad
             }
 
         }
         catch(Exception ee){
             ee.printStackTrace();
         }
+        return studentInfo;
     }
 
     public static void ReadStudentChoices(ArrayList<Student> stulist, String filename) throws IOException {
