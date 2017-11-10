@@ -8,6 +8,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.io.File;
+import java.io.PrintWriter;
+
 
 @Repository
 public class StudentDao {
@@ -17,21 +21,42 @@ public class StudentDao {
     private static ArrayList<Options> optionlist;
 
 
+    public void getAllStudents() {
+
     public ArrayList<HashMap<String, String>> getAllStudents(){
 
         ArrayList<HashMap<String, String>> studentList = new ArrayList<>();
 
         try
         {
+        	
+        	File studentHTML = new File ("C:/Users/Dikson/Desktop/Work/springTest/CSTOptionsWebApp/students.csv");
+        	PrintWriter pWriter = new PrintWriter (studentHTML);
+        	
+      
 
             ArrayList<Student> stulist = new ArrayList<>();
             ArrayList<Options> optionlist = new ArrayList<>();
             ReadStudentChoices(stulist, "upload-dir/StudentChoices.csv");
-            ReadStudentGPA(stulist, "upload-dir/StudentGPA.csv");
-            ReadOptionList(optionlist, "upload-dir/OptionSelectionControl.csv");
+//            ReadStudentGPA(stulist, "upload-dir/StudentGPA.csv");
+//            ReadOptionList(optionlist, "upload-dir/OptionSelectionControl.csv");
 
             //Print Student List
+            
+            pWriter.println("-Student #,First Name,Last Name,Priority list,Status,First Choice,Second Choice,Third Choice,Fourth Choice");
+            
             for(Student s:stulist){
+            	String studentName = s.getName();
+            	String[] firstLastName = studentName.split("\\s+");
+            	String studentChoices = s.printStudentChoices();
+            	String[] allChoices = studentChoices.split("\t");
+            	
+            	
+                System.out.println(s.getID()+"\n"+s.getName()+"\nGPA: "+s.getGPA()+"\n"+s.getPriority()+"\n"+s.getStatus()+"\n"+s.printStudentChoices());
+                System.out.println("---------***--------");
+                
+                pWriter.println(s.getID()+","+firstLastName[0]+","+firstLastName[1]+","+s.getPriority()+","+s.getStatus()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
+
                 HashMap<String, String> studentInfo = new HashMap<>();
                 studentInfo.put("ID", s.getID());
                 studentInfo.put("Name", s.getName());
@@ -43,10 +68,13 @@ public class StudentDao {
 
                 studentList.add(studentInfo);
             }
-
+            pWriter.close();
         }
         catch(Exception ee){
             ee.printStackTrace();
+	        }
+	    }
+
         }
         return studentList;
     }

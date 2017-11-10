@@ -32,7 +32,7 @@ public class FileUploadController {
 		this.storageService = storageService;
 	}
 
-	@GetMapping("/superuser/upload")
+	@GetMapping("/upload")
 	public String listUploadedFiles(Model model) throws IOException {
 
 		model.addAttribute("files",
@@ -55,7 +55,7 @@ public class FileUploadController {
 				.body(file);
 	}
 
-	@PostMapping("/")
+	@PostMapping("/upload")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
 		if (file.isEmpty()) {
 			redirectAttributes.addFlashAttribute("message", "No file selected, please select a .CSV file to upload!");
@@ -70,7 +70,7 @@ public class FileUploadController {
 			redirectAttributes.addFlashAttribute("message",
 					"You successfully uploaded " + file.getOriginalFilename() + "!");
 		}
-		return "redirect:/";
+		return "redirect:/upload";
 	}
 
 	private boolean fileExtensionCheck(MultipartFile file) {

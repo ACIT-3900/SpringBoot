@@ -40,7 +40,7 @@ public class HomeController {
         return "user";
     }
     
-    @RequestMapping("/admin/upload")
+    @RequestMapping("/upload")
     public String upload() {
         return "uploadForm";
     }
