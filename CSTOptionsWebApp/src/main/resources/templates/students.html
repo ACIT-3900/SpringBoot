@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <head>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+        </style>
+        <title>Students Home Page</title></head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+    <div id="container">
+        <h1>Student Container</h1>
+        <button id="mybut" type="button">Request Data</button>
+        <div id="stuContainer">
+            <table id="stuTable">
+              <tr>
+                <th>Name</th>
+                <th>GPA</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Assigned Option</th>
+                <th>Student Choices</th>
+              </tr>
+            </table>
+        </div>
+    </div>
+    
+    
+    <script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+        var myTable = document.getElementById("stuTable");
+        
+        document.getElementById("mybut").addEventListener("click", function(){
+            $.ajax({
+              url: "/students/getStudentName",
+              type:"get",
+              success: function(resp){
+                  console.log(resp);
+                  for(var i=0; i < resp.length; i++) {
+                    var tr = document.createElement("tr");
+                    var thName = document.createElement("th");
+                    var thGPA = document.createElement("th");
+                    var thPriority = document.createElement("th");
+                    var thStatus = document.createElement("th");
+                    var thAssigned = document.createElement("th");
+                    var thChoices = document.createElement("th");
+                    
+                    var txtName = document.createTextNode(resp[i].Name);
+                    var txtGPA = document.createTextNode(resp[i].GPA);
+                    var txtPriority = document.createTextNode(resp[i].Priority);
+                    var txtStatus = document.createTextNode(resp[i].Status);
+                    var txtAssigned = document.createTextNode(resp[i].AssignedOption);
+                    var txtChoices = document.createTextNode(resp[i].StudentChoices);
+                      
+                    
+                    
+                    thName.appendChild(txtName);
+                    thGPA.appendChild(txtGPA);
+                    thPriority.appendChild(txtPriority);
+                    thStatus.appendChild(txtStatus);
+                    thAssigned.appendChild(txtAssigned);
+                    thChoices.appendChild(txtChoices);
+                      
+                    tr.appendChild(thName);
+                    tr.appendChild(thGPA);
+                    tr.appendChild(thPriority);
+                    tr.appendChild(thStatus);
+                    tr.appendChild(thAssigned);
+                    tr.appendChild(thChoices);
+                      
+                      
+                    myTable.appendChild(tr);
+                }
+              }
+            });
+        });
+    /*]]>*/
+    </script>
+</body>
+</html> 

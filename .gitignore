@@ -23,6 +23,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-upload-dir/OptionSelectionControl.csv
-upload-dir/StudentChoices.csv
-upload-dir/StudentGPA.csv
+CSTOptionsWebApp/upload-dir/OptionSelectionControl.csv
+CSTOptionsWebApp/upload-dir/StudentChoices.csv
+CSTOptionsWebApp/upload-dir/StudentGPA.csv
+CSTOptionsWebApp/upload-dir/*

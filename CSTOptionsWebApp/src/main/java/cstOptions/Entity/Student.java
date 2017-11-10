@@ -73,8 +73,12 @@ public class Student {
         return GPA;
     }
 
-    public ArrayList<String> getStudentChoices() {
-        return studentChoices;
+    public String getStudentChoices() {
+        String choices = "";
+        for(int i=0; i< studentChoices.size(); i++){
+            choices += studentChoices.get(i) + "\n";
+        }
+        return choices;
     }
 
     public void setPriority(int priority) {
