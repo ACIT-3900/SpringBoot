@@ -18,10 +18,13 @@ public class StudentDao {
     private static ArrayList<Student> stulist;
     private static ArrayList<Options> optionlist;
 
-
-    public void getAllStudents(){
+    public void getAllStudents() {
+    	
         try
         {
+        	
+        	File studentHTML = new File ("C:/Users/Dikson/Desktop/Work/springTest/CSTOptionsWebAppv2/CSTOptionsWebApp/src/main/resources/templates/students.html");
+        	PrintWriter pWriter = new PrintWriter (studentHTML);
 
             ArrayList<Student> stulist = new ArrayList<>();
             ArrayList<Options> optionlist = new ArrayList<>();
@@ -29,12 +32,14 @@ public class StudentDao {
             ReadStudentGPA(stulist, "upload-dir/StudentGPA.csv");
             ReadOptionList(optionlist, "upload-dir/OptionSelectionControl.csv");
 
+//            ReadStudentGPA(stulist, "upload-dir/StudentGPA.csv");
+//            ReadOptionList(optionlist, "upload-dir/OptionSelectionControl.csv");
+
+
             //Print Student List
             for(Student s:stulist){
                 System.out.println(s.getID()+"\n"+s.getName()+"\nGPA: "+s.getGPA()+"\n"+s.getPriority()+"\n"+s.getStatus()+"\n"+s.printStudentChoices());
                 System.out.println("---------***--------");
-            }
-
         }
         catch(Exception ee){
             ee.printStackTrace();
