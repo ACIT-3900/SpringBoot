@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CST Options</title>
+    <div th:replace="header :: header-css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+    <div th:replace="header :: header"/>
+    <!-- Actual Page content -->
+    <div id="mainContainer" class="container">
+        <div class="row">
+            <div id="headerBlock"></div>
+            <div id="centerHome" class="col-sm-4 col-md-8 col-lg-12">
+                <img id="cstoptionimg" src="../images/cstoption.png"/>
+                <p id="testHello"/>
+                Pick your options here!
+                
+                <div>First Pick</div>
+                <select name="option1" class="optionPicker">
+                    <option value="math">Math
+                    </option>
+                    <option value="calc">Calculus
+                    </option>
+                    <option value="stats">Stats
+                    </option>
+                </select>
+                
+                <div>Second Pick</div>
+                <select name="option2" class="optionPicker">
+                    <option value="math">Math
+                    </option>
+                    <option value="calc">Calculus
+                    </option>
+                    <option value="stats">Stats
+                    </option>
+                </select>
+                
+                <div>Second Pick</div>
+                <select name="option3" class="optionPicker">
+                    <option value="math">Math
+                    </option>
+                    <option value="calc">Calculus
+                    </option>
+                    <option value="stats">Stats
+                    </option>
+                </select>
+                
+                <button id="homeSubmit" onclick="confirmSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
+    
+    <div th:replace="footer :: footer"/>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
+<script>
+    function confirmSubmit() {
+        var confirmCheck = confirm("You can not make changes to your options once submitted. Press OK to confirm.");
+        if (confirmCheck == true){
+            location.href = '/done';
+        }
+        else{
+            
+        }
+    }
+    $(document).ready(function(){
+        var name = window.location.search.split("studentNumber=")[1];
+        var helloString = "Hello, " + name; 
+        document.getElementById('testHello').innerHTML = helloString;
+    });
+    
+</script>
+</html>
