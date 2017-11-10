@@ -41,8 +41,37 @@
                   console.log(resp);
                   for(var i=0; i < resp.length; i++) {
                     var tr = document.createElement("tr");
-                    var txt = document.createTextNode(resp[i]);
-                    tr.appendChild(txt)
+                    var thName = document.createElement("th");
+                    var thGPA = document.createElement("th");
+                    var thPriority = document.createElement("th");
+                    var thStatus = document.createElement("th");
+                    var thAssigned = document.createElement("th");
+                    var thChoices = document.createElement("th");
+                    
+                    var txtName = document.createTextNode(resp[i].Name);
+                    var txtGPA = document.createTextNode(resp[i].GPA);
+                    var txtPriority = document.createTextNode(resp[i].Priority);
+                    var txtStatus = document.createTextNode(resp[i].Status);
+                    var txtAssigned = document.createTextNode(resp[i].AssignedOption);
+                    var txtChoices = document.createTextNode(resp[i].StudentChoices);
+                      
+                    
+                    
+                    thName.appendChild(txtName);
+                    thGPA.appendChild(txtGPA);
+                    thPriority.appendChild(txtPriority);
+                    thStatus.appendChild(txtStatus);
+                    thAssigned.appendChild(txtAssigned);
+                    thChoices.appendChild(txtChoices);
+                      
+                    tr.appendChild(thName);
+                    tr.appendChild(thGPA);
+                    tr.appendChild(thPriority);
+                    tr.appendChild(thStatus);
+                    tr.appendChild(thAssigned);
+                    tr.appendChild(thChoices);
+                      
+                      
                     myTable.appendChild(tr);
                 }
               }

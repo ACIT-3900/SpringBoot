@@ -7,9 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 
 @Repository
 public class StudentDao {
@@ -19,9 +17,10 @@ public class StudentDao {
     private static ArrayList<Options> optionlist;
 
 
-    public HashMap<String, String> getAllStudents(){
-        ArrayList<HashMap> studentList = new ArrayList<>();
-        HashMap<String, String> studentInfo = new HashMap<>();
+    public ArrayList<HashMap<String, String>> getAllStudents(){
+
+        ArrayList<HashMap<String, String>> studentList = new ArrayList<>();
+
         try
         {
 
@@ -33,14 +32,23 @@ public class StudentDao {
 
             //Print Student List
             for(Student s:stulist){
-                studentInfo.ad
+                HashMap<String, String> studentInfo = new HashMap<>();
+                studentInfo.put("ID", s.getID());
+                studentInfo.put("Name", s.getName());
+                studentInfo.put("GPA", s.getGPA());
+                studentInfo.put("Priority", Integer.toString(s.getPriority()));
+                studentInfo.put("Status", s.getStatus());
+                studentInfo.put("AssignedOption", s.getAssignedOption());
+                studentInfo.put("StudentChoices", s.getStudentChoices());
+
+                studentList.add(studentInfo);
             }
 
         }
         catch(Exception ee){
             ee.printStackTrace();
         }
-        return studentInfo;
+        return studentList;
     }
 
     public static void ReadStudentChoices(ArrayList<Student> stulist, String filename) throws IOException {

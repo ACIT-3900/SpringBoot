@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/students")
@@ -17,7 +17,7 @@ public class StudentController {
     private StudentDao studentDao;
 
     @RequestMapping(value = "/getStudentName", method = RequestMethod.GET)
-    public ArrayList<String> getAllStudents(){
+    public ArrayList<HashMap<String, String>> getAllStudents(){
         return studentDao.getAllStudents();
     }
 
