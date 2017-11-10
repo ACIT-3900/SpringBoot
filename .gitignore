@@ -28,6 +28,3 @@ nbdist/
 upload-dir/OptionSelectionControl.csv
 upload-dir/StudentChoices.csv
 upload-dir/StudentGPA.csv
-CSTOptionsWebApp/students.csv
-upload-dir/
-studentChoices.csv
