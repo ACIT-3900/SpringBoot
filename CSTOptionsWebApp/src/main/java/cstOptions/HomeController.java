@@ -49,6 +49,11 @@ public class HomeController {
     public String login() {
         return "login";
     }
+
+    @RequestMapping("/students")
+    public String students() {
+        return "students";
+    }
     
     @RequestMapping("/403")
     public String error403() {

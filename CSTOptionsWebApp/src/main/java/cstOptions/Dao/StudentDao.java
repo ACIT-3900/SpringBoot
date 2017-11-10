@@ -7,11 +7,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.File;
 import java.io.PrintWriter;
+
 
 @Repository
 public class StudentDao {
@@ -20,8 +20,13 @@ public class StudentDao {
     private static ArrayList<Student> stulist;
     private static ArrayList<Options> optionlist;
 
+
     public void getAllStudents() {
-    	
+
+    public ArrayList<HashMap<String, String>> getAllStudents(){
+
+        ArrayList<HashMap<String, String>> studentList = new ArrayList<>();
+
         try
         {
         	
@@ -51,6 +56,17 @@ public class StudentDao {
                 System.out.println("---------***--------");
                 
                 pWriter.println(s.getID()+","+firstLastName[0]+","+firstLastName[1]+","+s.getPriority()+","+s.getStatus()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
+
+                HashMap<String, String> studentInfo = new HashMap<>();
+                studentInfo.put("ID", s.getID());
+                studentInfo.put("Name", s.getName());
+                studentInfo.put("GPA", s.getGPA());
+                studentInfo.put("Priority", Integer.toString(s.getPriority()));
+                studentInfo.put("Status", s.getStatus());
+                studentInfo.put("AssignedOption", s.getAssignedOption());
+                studentInfo.put("StudentChoices", s.getStudentChoices());
+
+                studentList.add(studentInfo);
             }
             pWriter.close();
         }
@@ -59,6 +75,9 @@ public class StudentDao {
 	        }
 	    }
 
+        }
+        return studentList;
+    }
 
     public static void ReadStudentChoices(ArrayList<Student> stulist, String filename) throws IOException {
 

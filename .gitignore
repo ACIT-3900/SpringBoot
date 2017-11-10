@@ -23,8 +23,3 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-
-### Spring Files ###
-upload-dir/OptionSelectionControl.csv
-upload-dir/StudentChoices.csv
-upload-dir/StudentGPA.csv
