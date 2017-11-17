@@ -17,9 +17,10 @@
         <div class="row">
             <div id="centerLogin" class="col-sm-4 col-md-8 col-lg-12">
                 <img id="cstoptionimg" src="../images/cstoption.png"/>
-                    <input id="inputID" class="centered" name="studentNumber" type="text" placeholder="Enter Your A00 Number"/>
+                <form action= "/home">
+                    <input id="inputID" class="centered" name="studentNumber" type="text" title="Enter an A00 Number" pattern="A00+[0-9]{5,12}" required="required" autofocus="true" />
                     <input type="submit" value="Submit" id="indexSubmit" onclick="confirmID()"/>
-            
+                </form>
                 
                 
             </div>
@@ -42,7 +43,6 @@
             data: {"stuID": stuID}
             });
         console.log(stuID);
-        location.href = '/home';
     }
     </script>    
 </html>
