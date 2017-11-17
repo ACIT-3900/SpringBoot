@@ -20,9 +20,6 @@ public class StudentDao {
     private static ArrayList<Student> stulist;
     private static ArrayList<Options> optionlist;
 
-
-    public void getAllStudents() {
-
     public ArrayList<HashMap<String, String>> getAllStudents(){
 
         ArrayList<HashMap<String, String>> studentList = new ArrayList<>();
@@ -73,11 +70,9 @@ public class StudentDao {
         catch(Exception ee){
             ee.printStackTrace();
 	        }
-	    }
 
-        }
         return studentList;
-    }
+}
 
     public static void ReadStudentChoices(ArrayList<Student> stulist, String filename) throws IOException {
 
