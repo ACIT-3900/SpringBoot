@@ -17,8 +17,13 @@ body {
 }
 
 .optionPicker {
-    border-radius: 2px;
-    background-color: aliceblue;
+    border-radius: 5px;
+    background:none;
+    border: none;
+    color: aliceblue;
+    font-size: 1em;
+    margin-bottom: 30px;
+    background-color: rgba(0,0,0,0.6);
 }
 
 /*
@@ -67,10 +72,11 @@ body {
     background: rgba(0,0,0,0.6);
     margin: 0 auto;
     padding: 30px 0 16px;
-    max-width: 300px;
+    max-width: 80vw;
     border-radius: 8px;
     height: 388px;
     color: bisque;
+    height: 80%;
 }
 
 #homeSubmit {
@@ -78,9 +84,11 @@ body {
     top: 7px;
     border: none;
     border-radius: 4px;
-    width: 85%;
+    width: 80%;
     height: 40px;
     background-color: gold;
+    margin-top: 5vh;
+    z-index: 10;
 }
 
 /* MEDIA QUERIES FOR MOBILE DEVICES BELOW DO NOT TOUCH*/
