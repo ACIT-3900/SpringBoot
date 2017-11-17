@@ -1,6 +1,7 @@
 package cstOptions.Dao;
 import cstOptions.Entity.Options;
 import cstOptions.Entity.Student;
+import cstOptions.Entity.StudentPlacement;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
@@ -8,9 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Repository
@@ -19,9 +21,10 @@ public class StudentDao {
 
     private static ArrayList<Student> stulist;
     private static ArrayList<Options> optionlist;
-
-
-    public void getAllStudents() {
+    private static HashSet<Student> nullList = new HashSet<>();
+    private static Set<String> optName = new HashSet<String>();
+    private static Set<String> stuID = new HashSet<String>();
+    private static Set<String> nullStuID = new HashSet<String>();
 
     public ArrayList<HashMap<String, String>> getAllStudents(){
 
@@ -30,7 +33,7 @@ public class StudentDao {
         try
         {
         	
-        	File studentHTML = new File ("C:/Users/Dikson/Desktop/Work/springTest/CSTOptionsWebApp/students.csv");
+        	File studentHTML = new File ("./students.csv");
         	PrintWriter pWriter = new PrintWriter (studentHTML);
         	
       
@@ -38,9 +41,11 @@ public class StudentDao {
             ArrayList<Student> stulist = new ArrayList<>();
             ArrayList<Options> optionlist = new ArrayList<>();
             ReadStudentChoices(stulist, "upload-dir/StudentChoices.csv");
-//            ReadStudentGPA(stulist, "upload-dir/StudentGPA.csv");
-//            ReadOptionList(optionlist, "upload-dir/OptionSelectionControl.csv");
+            ReadStudentGPA(stulist, "upload-dir/StudentGPA.csv", stuID);
+            ReadOptionList(optionlist, "upload-dir/OptionSelectionControl.csv", optName);
 
+            StudentPlacement place = new StudentPlacement(stulist, optionlist, nullList);
+            place.displayGPA();
             //Print Student List
             
             pWriter.println("-Student #,First Name,Last Name,Priority list,Status,First Choice,Second Choice,Third Choice,Fourth Choice");
@@ -49,22 +54,18 @@ public class StudentDao {
             	String studentName = s.getName();
             	String[] firstLastName = studentName.split("\\s+");
             	String studentChoices = s.printStudentChoices();
-            	String[] allChoices = studentChoices.split("\t");
-            	
-            	
-                System.out.println(s.getID()+"\n"+s.getName()+"\nGPA: "+s.getGPA()+"\n"+s.getPriority()+"\n"+s.getStatus()+"\n"+s.printStudentChoices());
-                System.out.println("---------***--------");
+            	String[] allChoices = studentChoices.split("/n");
                 
                 pWriter.println(s.getID()+","+firstLastName[0]+","+firstLastName[1]+","+s.getPriority()+","+s.getStatus()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
 
                 HashMap<String, String> studentInfo = new HashMap<>();
                 studentInfo.put("ID", s.getID());
                 studentInfo.put("Name", s.getName());
-                studentInfo.put("GPA", s.getGPA());
+                studentInfo.put("GPA", String.valueOf(s.getGPA()));
                 studentInfo.put("Priority", Integer.toString(s.getPriority()));
                 studentInfo.put("Status", s.getStatus());
                 studentInfo.put("AssignedOption", s.getAssignedOption());
-                studentInfo.put("StudentChoices", s.getStudentChoices());
+                studentInfo.put("StudentChoices", s.printStudentChoices());
 
                 studentList.add(studentInfo);
             }
@@ -73,12 +74,28 @@ public class StudentDao {
         catch(Exception ee){
             ee.printStackTrace();
 	        }
-	    }
-
-        }
         return studentList;
     }
 
+    //Reads Option CSV file and creates Option objects
+    public static void ReadOptionList(ArrayList<Options> optlist, String filename, Set<String> optName)throws IOException{
+
+        BufferedReader br;
+        String line;
+        br = new BufferedReader(new FileReader(filename));
+        br.readLine();
+
+        while((line = br.readLine()) != null){
+            String[] optionInfo = line.split(COMMA_DELIMITER);
+            if(optionInfo.length>0){
+                Options opt = new Options(optionInfo[0], Integer.parseInt(optionInfo[1]));
+                optlist.add(opt);
+                optName.add(optionInfo[0]);
+            }
+        }
+    }
+
+    //Reads Student Choice CSV file and creates Student objects
     public static void ReadStudentChoices(ArrayList<Student> stulist, String filename) throws IOException {
 
         BufferedReader br;
@@ -102,12 +119,17 @@ public class StudentDao {
                 studentChoices.add(studentInfo[8]);
 
                 //Save details
-                Student stu = new Student(studentInfo[0], studentInfo[1], studentInfo[2], Integer.parseInt(studentInfo[3]), studentInfo[4], studentChoices);
+                Student stu = new Student(studentInfo[0], studentInfo[1], studentInfo[2], Integer.parseInt(studentInfo[3]), 0, studentChoices, "", studentInfo[4], "");
+                if ("".equals(stu.getStatus())){
+                    stu.setStatus("Eligible");
+                }
                 stulist.add(stu);
             }
         }
     }
-    private static void ReadStudentGPA(ArrayList<Student> stulist, String filename) throws IOException {
+
+    //Reads Student GPA CSV file and adds GPA to Student objects
+    public static void ReadStudentGPA(ArrayList<Student> stulist, String filename, Set<String> stuID) throws IOException {
 
         String line;
         BufferedReader br;
@@ -117,29 +139,22 @@ public class StudentDao {
         while ((line = br.readLine()) != null){
             String[] studentInfo = line.split(COMMA_DELIMITER);
             if(studentInfo.length>0){
-
-                for (Student s : stulist) {
+                for (Student s:stulist) {
                     if(s.getID().equals(studentInfo[0])){
-                        s.setGPA(studentInfo[1]);
+                        Double dbl = Double.parseDouble(studentInfo[1]);
+                        s.setGPA(dbl);
+                        stuID.add(s.getID());
                         break;
                     }
                 }
             }
         }
     }
-    public static void ReadOptionList(ArrayList<Options> optionList, String filename) throws IOException {
 
-        String line;
-        BufferedReader br;
-        br = new BufferedReader(new FileReader(filename));
-        br.readLine();
-
-        while ((line = br.readLine()) != null){
-            String[] optionInfo = line.split(COMMA_DELIMITER);
-            if(optionInfo.length>0){
-                Options opt = new Options(optionInfo[0], Integer.parseInt(optionInfo[1]));
-                optionList.add(opt);
-            }
+    //Creates a Set List of null Student IDs
+    public static void CreateNullStudentIDLIst(Set<String> nullStuID, HashSet<Student> nullList){
+        for(Student stu:nullList){
+            nullStuID.add(stu.getID());
         }
     }
 }
