@@ -1,9 +1,58 @@
-h1{
-	color:#0000FF;
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../images/bcit_background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#forgotLogin{
+	color:white;
+}
+#username,#password{
+	 background-color: black;
+    border-radius: 2px;
+    border: none;
+    width: 85%;
+    height: 25px;
+    margin: 10px;
+    color:white;
+}
+
+#sub{
+    position: relative;
+    top: 125px;
+    border: none;
+    border-radius: 4px;
+    width: 85%;
+    height: 40px;
+    background-color: gold;
+    display:block;
+    margin: 0 auto;
+    
 }
 
 h2{
 	color:#FF0000;
+}
+
+h1 {
+	display: block;
+    max-width: 275px;
+    height: auto;
+    color: Orange;
+    margin: 0 auto;
+}
+
+fieldset {
+    background: rgba(0,0,0,0.6);
+    margin: 0 auto;
+    padding: 30px 0 16px;
+    max-width: 300px;
+    border-radius: 8px;
+    height: 388px;
 }
 
 footer{
