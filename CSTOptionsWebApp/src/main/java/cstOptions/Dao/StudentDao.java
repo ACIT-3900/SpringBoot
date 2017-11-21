@@ -27,7 +27,7 @@ public class StudentDao {
         try
         {
         	
-        	File studentHTML = new File ("C:/Users/Dikson/Desktop/Work/springTest/CSTOptionsWebApp/students.csv");
+        	File studentHTML = new File ("./students.csv");
         	PrintWriter pWriter = new PrintWriter (studentHTML);
         	
       
