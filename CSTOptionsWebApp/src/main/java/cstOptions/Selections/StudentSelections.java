@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 	)
 public class StudentSelections extends HttpServlet {
 	
-	File selectionFile = new File("C:/Users/Dikson/Desktop/Work/springTest/CSTOptionsWebApp/selection.csv");
+	File selectionFile = new File("./selection.csv");
 	@Override		
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
