@@ -54,7 +54,12 @@ public class HomeController {
     public String students() {
         return "students";
     }
-    
+
+    @RequestMapping("/search")
+    public String search() {
+        return "search";
+    }
+
     @RequestMapping("/403")
     public String error403() {
     	return "../public/error/403";

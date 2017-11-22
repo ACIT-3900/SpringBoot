@@ -40,7 +40,7 @@ public class Application {
         srb.setUrlMappings(Arrays.asList("/saveSelections"));
         return srb;
     }
-    
+
     @Bean
     ServletRegistrationBean myServletRegistration2 () {
         ServletRegistrationBean srb = new ServletRegistrationBean();
@@ -48,7 +48,8 @@ public class Application {
         srb.setUrlMappings(Arrays.asList("/saveID"));
         return srb;
     }
-    
+
+
     @Bean
     FilterRegistrationBean myFilterRegistration () {
         FilterRegistrationBean frb = new FilterRegistrationBean();

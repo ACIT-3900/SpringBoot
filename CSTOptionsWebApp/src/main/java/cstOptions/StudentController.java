@@ -1,10 +1,9 @@
 package cstOptions;
 
 import cstOptions.Dao.StudentDao;
+import cstOptions.Entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,5 +19,12 @@ public class StudentController {
     public ArrayList<HashMap<String, String>> getAllStudents(){
         return studentDao.getAllStudents();
     }
+
+    @RequestMapping(value = "/searchById/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Student searchById(@PathVariable(name = "id") String id){
+        return studentDao.searchById(id);
+    }
+
 
 }

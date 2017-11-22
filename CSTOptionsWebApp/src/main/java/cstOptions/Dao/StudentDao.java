@@ -19,12 +19,14 @@ import java.util.Set;
 public class StudentDao {
     private static final String COMMA_DELIMITER = ",";
 
-    private static ArrayList<Student> stulist;
-    private static ArrayList<Options> optionlist;
+    private static ArrayList<Student> stulist = new ArrayList<>();
+    private static ArrayList<Options> optionlist = new ArrayList<>();
     private static HashSet<Student> nullList = new HashSet<>();
     private static Set<String> optName = new HashSet<String>();
     private static Set<String> stuID = new HashSet<String>();
     private static Set<String> nullStuID = new HashSet<String>();
+
+
 
     public ArrayList<HashMap<String, String>> getAllStudents(){
 
@@ -35,11 +37,7 @@ public class StudentDao {
         	
         	File studentHTML = new File ("./students.csv");
         	PrintWriter pWriter = new PrintWriter (studentHTML);
-        	
-      
 
-            ArrayList<Student> stulist = new ArrayList<>();
-            ArrayList<Options> optionlist = new ArrayList<>();
             ReadStudentChoices(stulist, "upload-dir/StudentChoices.csv");
             ReadStudentGPA(stulist, "upload-dir/StudentGPA.csv", stuID);
             ReadOptionList(optionlist, "upload-dir/OptionSelectionControl.csv", optName);
@@ -156,5 +154,20 @@ public class StudentDao {
         for(Student stu:nullList){
             nullStuID.add(stu.getID());
         }
+    }
+
+    public Student searchById(String search){
+        System.out.println(search);
+
+            for(Student stu:stulist){
+                if(search.equals(stu.getID())){
+                    System.out.println("Student exists");
+                    return stu;
+                }
+                else {
+                    System.out.println("Didnt work LOL!");
+                }
+            }
+            return null;
     }
 }
