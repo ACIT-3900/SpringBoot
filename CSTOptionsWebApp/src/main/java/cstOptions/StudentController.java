@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class StudentController {
 
     @Autowired
-    private StudentDao studentDao;
+    private StudentDao studentDao = new StudentDao();
 
     @RequestMapping(value = "/getStudentName", method = RequestMethod.GET)
     public ArrayList<HashMap<String, String>> getAllStudents(){

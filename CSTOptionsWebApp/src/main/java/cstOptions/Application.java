@@ -49,7 +49,6 @@ public class Application {
         return srb;
     }
 
-
     @Bean
     FilterRegistrationBean myFilterRegistration () {
         FilterRegistrationBean frb = new FilterRegistrationBean();

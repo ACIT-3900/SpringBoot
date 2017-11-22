@@ -157,7 +157,7 @@ public class StudentDao {
     }
 
     public Student searchById(String search){
-        System.out.println(search);
+        System.out.println("SEARCH:" + search);
 
             for(Student stu:stulist){
                 if(search.equals(stu.getID())){
