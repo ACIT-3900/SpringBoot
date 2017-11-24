@@ -96,6 +96,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 <script>
+/*<![CDATA[*/
     function confirmSubmit() {
         var confirmCheck = confirm("You can not make changes to your options once submitted. Press OK to confirm.");
         if (confirmCheck == true){
@@ -109,16 +110,21 @@
             
             console.log(firstP, secondP, thirdP, fourthP);
             
-            $.ajax({
-              type:"GET",
-              url: '/saveSelections',
-              data: {"firstP": firstP, 
-                     "secondP": secondP,
-                     "thirdP": thirdP,
-                     "fourthP": fourthP}
-            });
-            console.log("Selection Saved!");
-            location.href = '/done';
+            if(firstP !== secondP && firstP !== thirdP && firstP !== fourthP &&  secondP !== thirdP && secondP !== fourthP 
+                 && thirdP !== fourthP ) {
+                $.ajax({
+                  type:"GET",
+                  url: '/saveSelections',
+                  data: {"firstP": firstP, 
+                         "secondP": secondP,
+                         "thirdP": thirdP,
+                         "fourthP": fourthP}
+                });
+                console.log("Selection Saved!");
+                location.href = '/done';
+            } else {
+                alert("Can't use the same picks");
+            }
         }
         else{
             
@@ -129,6 +135,6 @@
         var helloString = "Hello, " + name; 
         document.getElementById('testHello').innerHTML = helloString;
     });
-    
+/*]]>*/    
 </script>
 </html>
