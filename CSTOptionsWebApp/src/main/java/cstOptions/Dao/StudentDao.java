@@ -163,7 +163,7 @@ public class StudentDao {
         }
     }
 
-    public Student searchById(String search){
+    public static Student searchById(String search){
         System.out.println("SEARCH:" + search);
 
             for(Student stu:stulist){
@@ -181,5 +181,35 @@ public class StudentDao {
     //Prints all Options information
     public ArrayList<Options> ViewOptions(){
         return optionlist;
+    }
+
+    public void AddStudent(String ID, String optionName){
+        if(optName.contains(optionName)){
+            Student stu = searchById(ID);
+            if("NOTHING".equals(stu.getAssignedOption())){
+                for(Options opt:optionlist){
+                    if(optionName.equals(opt.getCourseName())){
+                        stu.setAssignedOption(opt.getCourseName());
+                        opt.addStudentToList(stu);
+                        if(nullStuID.contains(stu.getID())){
+                            nullList.remove(stu);
+                        }
+                        break;
+                    }
+                }
+            }else{System.out.println("Student is a part of "+stu.getAssignedOption()+" class. Please remove student first before trying again.");}
+        }else{System.out.println("That is not a valid Option course");}
+    }
+    public void DropStudent(String ID){
+        Student stu = searchById(ID);
+        for(Options opt:optionlist){
+            if(stu.getAssignedOption().equals(opt.getCourseName())){
+                opt.removeStudent(stu.getName());
+                stu.setAssignedOption("NOTHING");
+                nullList.add(stu);
+                nullStuID.add(stu.getName());
+                break;
+            }
+        }
     }
 }

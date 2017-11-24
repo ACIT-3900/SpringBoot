@@ -37,3 +37,11 @@ body {
     display: table;
     clear: both;
 }
+
+#stuContainer {
+    border: 1px solid grey;
+    width: 55vw;
+    height: 50vh;
+    overflow: auto;
+    margin: auto;
+            }

@@ -49,7 +49,7 @@ public class Options {
 
     /* FUNCTIONS */
 
-    void removeStudent(String studentName){
+    public void removeStudent(String studentName){
         for(Student s:classList){
             if (s.getName().equals(studentName)){
                 classList.remove(s);
@@ -58,7 +58,7 @@ public class Options {
         }
     }
 
-    void addStudentToList(Student stu){
+    public void addStudentToList(Student stu){
         classList.add(stu);
     }
 

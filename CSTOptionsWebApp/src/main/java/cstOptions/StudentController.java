@@ -27,6 +27,19 @@ public class StudentController {
         return studentDao.searchById(id);
     }
 
+    @RequestMapping(value = "/addStudent/{id}/{selection}", method = RequestMethod.GET)
+    @ResponseBody
+    public void addStudent(@PathVariable(name = "id") String id,
+                           @PathVariable(name = "selection") String selection){
+        studentDao.AddStudent(id, selection);
+    }
+
+    @RequestMapping(value = "/dropStudent/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public void dropStudent(@PathVariable(name = "id") String id) {
+        studentDao.DropStudent(id);
+    }
+
     @RequestMapping(value = "/optionsDetail", method = RequestMethod.GET)
     public ArrayList<Options> ViewOptions(){
         return studentDao.ViewOptions();
