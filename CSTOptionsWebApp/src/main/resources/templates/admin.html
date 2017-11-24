@@ -22,14 +22,13 @@
 
 <div th:replace="header :: header"/>
 
-<!-- 
 <div class="container" style="margin:20vh;">
 
-    <div class="starter-template">
+    <div class="starter-template" style="color:azure; font-size:1em;">
         <h1>Admin page (Spring Security protected)</h1>
 
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/admin/upload}" method="post">
+        <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
             <input type="submit" value="Upload files"/>
         </form>
         <form th:action="@{/logout}" method="post">
@@ -38,7 +37,6 @@
       
     </div>
 </div>
--->
 
 <div style="padding:100px">
 	<div class="row">
@@ -98,6 +96,7 @@
 	</table>
 	</div>
 </div>
+-->
 
 <!-- /.container -->
 
