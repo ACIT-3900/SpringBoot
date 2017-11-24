@@ -2,27 +2,82 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="header :: header-css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="/css/admin.css"/>
 </head>
 <body>
 
 <div th:replace="header :: header"/>
 
+<!-- 
 <div class="container" style="margin:20vh;">
 
     <div class="starter-template">
         <h1>Admin page (Spring Security protected)</h1>
 
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/upload}" method="post">
+        <form th:action="@{/admin/upload}" method="post">
             <input type="submit" value="Upload files"/>
         </form>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>
-
+      
     </div>
-
 </div>
+-->
+<div class="row">
+  <div class="column" >
+  <select style="float:right">
+  <option value="A">Option A</option>
+  <option value="B">Option B</option>
+  <option value="C">Option C</option>
+  <option value="D">Option D</option>
+</select> 
+<br></br>
+<button style="float:right">Add Student</button>
+<br></br>
+<button style="float:right">Drop Student</button>
+</div>
+<h2 style="float:middle">Option A</h2>
+
+<p >Max Capacity: 20
+<span style="float:right"> Seats Available: 20</span>
+</p>
+<h2 style="text-align:center">Class List</h2>
+
+<table style="border: 1px solid black;">
+  <tr>
+    <th>Student</th>
+    <th>Name</th>
+    <th>GPA</th>
+    <th>Priority</th>
+  </tr>
+  <tr>
+    <td>Example Student</td>
+    <td>Example Name</td>
+    <td>Example GPA</td>
+    <td>Example Priority</td>
+  </tr>
+  <tr>
+    <td>Example Student</td>
+    <td>Example Name</td>
+    <td>Example GPA</td>
+    <td>Example Priority</td>
+  </tr><tr>
+    <td>Example Student</td>
+    <td>Example Name</td>
+    <td>Example GPA</td>
+    <td>Example Priority</td>
+  </tr><tr>
+    <td>Example Student</td>
+    <td>Example Name</td>
+    <td>Example GPA</td>
+    <td>Example Priority</td>
+  </tr>
+</table>
+</div>
+
 <!-- /.container -->
 
 <div th:replace="footer :: footer"/>
