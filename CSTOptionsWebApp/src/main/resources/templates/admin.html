@@ -4,14 +4,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="/css/admin.css"/>
 </head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<body>
 
-    <div class="starter-template">
+<style>
+	body {
+	    margin: 0;
+	    padding: 0;
+	    background: url(../images/background.jpg) no-repeat center center fixed;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    -o-background-size: cover;
+	    background-size: cover;
+	}
+</style>
+
+<body>
+    <div th:replace="header :: header"/>
+        
+    <div class="starter-template" style="color:azure; font-size:1em;">
         <h1>Admin page (Spring Security protected)</h1>
 
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/admin/upload}" method="post">
+        <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
             <input type="submit" value="Upload files"/>
         </form>
         <form th:action="@{/logout}" method="post">
@@ -20,16 +33,16 @@
     </div>
 
 
-<div id="container">
-    <div id="editDiv">
-    <input id="studentId" type="text" placeholder="ID"/>    
-    <br></br>
-    <button id="addBut" class="btn btn-default btn-large" style="float:left">Add Student</button>
-    <br></br>
-    <br></br>
-    <button id="dropBut" class="btn btn-default btn-large" style="float:left">Drop Student</button>
-    <br></br>
-    <br></br>
+    <div id="container">
+        <div id="editDiv">
+        <input id="studentId" type="text" placeholder="ID"/>    
+        <br></br>
+        <button id="addBut" class="btn btn-default btn-large" style="float:left">Add Student</button>
+        <br></br>
+        <br></br>
+        <button id="dropBut" class="btn btn-default btn-large" style="float:left">Drop Student</button>
+        <br></br>
+        <br></br>
 
       <select id="optionSelect" style="float:left"></select> 
     
@@ -59,7 +72,7 @@
             </table>
         </div>
     </div>
-    </div>
+</div>
 <!-- /.container -->
 
 <div th:replace="footer :: footer"></div>
