@@ -60,6 +60,11 @@ public class HomeController {
         return "search";
     }
 
+    @RequestMapping("/student-edit")
+    public String studentEdit() {
+        return "student-edit";
+    }
+
     @RequestMapping("/403")
     public String error403() {
     	return "../public/error/403";

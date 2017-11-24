@@ -21,24 +21,16 @@ public class Options {
 
     /* GETTERS */
 
-    int getCapacity(){
+    public int getCapacity(){
         return capacity;
     }
 
-    String getCourseName(){
+    public String getCourseName(){
         return courseName;
     }
 
-    String getClassList(){
-        if (classList == null) {
-            return null;
-        } else {
-            String str = "";
-            for (int i = 0; i < classList.size(); i++) {
-                str += classList.get(i).getName() + "\t";
-            }
-            return str;
-        }
+    public ArrayList<Student> getClassList(){
+        return classList;
     }
 
     /* SETTERS */
@@ -81,7 +73,7 @@ public class Options {
         return checker;
     }
 
-    int getEmptySeats() {
+    public int getEmptySeats() {
         if(classList == null){
             return capacity;
         }

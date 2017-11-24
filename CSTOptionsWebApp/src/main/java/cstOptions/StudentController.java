@@ -1,6 +1,7 @@
 package cstOptions;
 
 import cstOptions.Dao.StudentDao;
+import cstOptions.Entity.Options;
 import cstOptions.Entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,5 +27,9 @@ public class StudentController {
         return studentDao.searchById(id);
     }
 
+    @RequestMapping(value = "/optionsDetail", method = RequestMethod.GET)
+    public ArrayList<Options> ViewOptions(){
+        return studentDao.ViewOptions();
+    }
 
 }

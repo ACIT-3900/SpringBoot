@@ -38,6 +38,12 @@ public class StudentDao {
         	File studentHTML = new File ("./students.csv");
         	PrintWriter pWriter = new PrintWriter (studentHTML);
 
+        	stulist.clear();
+        	optionlist.clear();
+        	nullList.clear();
+        	optName.clear();
+        	stuID.clear();
+
             ReadStudentChoices(stulist, "upload-dir/StudentChoices.csv");
             ReadStudentGPA(stulist, "upload-dir/StudentGPA.csv", stuID);
             ReadOptionList(optionlist, "upload-dir/OptionSelectionControl.csv", optName);
@@ -67,6 +73,7 @@ public class StudentDao {
 
                 studentList.add(studentInfo);
             }
+
             pWriter.close();
         }
         catch(Exception ee){
@@ -169,5 +176,10 @@ public class StudentDao {
                 }
             }
             return null;
+    }
+
+    //Prints all Options information
+    public ArrayList<Options> ViewOptions(){
+        return optionlist;
     }
 }
