@@ -5,6 +5,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="/css/admin.css"/>
 </head>
+
+<style>
+	body {
+	    margin: 0;
+	    padding: 0;
+	    background: url(../images/background.jpg) no-repeat center center fixed;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    -o-background-size: cover;
+	    background-size: cover;
+	}
+</style>
+
 <body>
 
 <div th:replace="header :: header"/>
@@ -26,56 +39,64 @@
     </div>
 </div>
 -->
-<div class="row">
-  <div class="column" >
-  <select style="float:right">
-  <option value="A">Option A</option>
-  <option value="B">Option B</option>
-  <option value="C">Option C</option>
-  <option value="D">Option D</option>
-</select> 
-<br></br>
-<button style="float:right">Add Student</button>
-<br></br>
-<button style="float:right">Drop Student</button>
-</div>
-<h2 style="float:middle">Option A</h2>
 
-<p >Max Capacity: 20
-<span style="float:right"> Seats Available: 20</span>
-</p>
-<h2 style="text-align:center">Class List</h2>
-
-<table style="border: 1px solid black;">
-  <tr>
-    <th>Student</th>
-    <th>Name</th>
-    <th>GPA</th>
-    <th>Priority</th>
-  </tr>
-  <tr>
-    <td>Example Student</td>
-    <td>Example Name</td>
-    <td>Example GPA</td>
-    <td>Example Priority</td>
-  </tr>
-  <tr>
-    <td>Example Student</td>
-    <td>Example Name</td>
-    <td>Example GPA</td>
-    <td>Example Priority</td>
-  </tr><tr>
-    <td>Example Student</td>
-    <td>Example Name</td>
-    <td>Example GPA</td>
-    <td>Example Priority</td>
-  </tr><tr>
-    <td>Example Student</td>
-    <td>Example Name</td>
-    <td>Example GPA</td>
-    <td>Example Priority</td>
-  </tr>
-</table>
+<div style="padding:100px">
+	<div class="row">
+	  <div class="column" >
+	  	<div style="float:right" >
+		  <select>
+		  <option value="A">Option A</option>
+		  <option value="B">Option B</option>
+		  <option value="C">Option C</option>
+		  <option value="D">Option D</option>
+		</select> 
+		<br></br>
+		<button >Add Student</button>
+		<br></br>
+		<button > Drop Student</button>
+		</div>
+		
+	   </div>
+	<h2 style="float:middle">Option A&nbsp;</h2>
+	
+	<div style="padding:200px;float:left;" >
+		<h2 style="text-align:center">Class List</h2>
+	
+		<p >Max Capacity: 20 &nbsp;
+		<span style="float:right"> Seats Available: 20</span>
+		</p>
+	</div>
+	<table style="border: 1px solid black;">
+	  <tr>
+	    <th>Student</th>
+	    <th>Name</th>
+	    <th>GPA</th>
+	    <th>Priority</th>
+	  </tr>
+	  <tr>
+	    <td>Example Student</td>
+	    <td>Example Name</td>
+	    <td>Example GPA</td>
+	    <td>Example Priority</td>
+	  </tr>
+	  <tr>
+	    <td>Example Student</td>
+	    <td>Example Name</td>
+	    <td>Example GPA</td>
+	    <td>Example Priority</td>
+	  </tr><tr>
+	    <td>Example Student</td>
+	    <td>Example Name</td>
+	    <td>Example GPA</td>
+	    <td>Example Priority</td>
+	  </tr><tr>
+	    <td>Example Student</td>
+	    <td>Example Name</td>
+	    <td>Example GPA</td>
+	    <td>Example Priority</td>
+	  </tr>
+	</table>
+	</div>
 </div>
 
 <!-- /.container -->
