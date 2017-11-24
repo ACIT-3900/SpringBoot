@@ -12,6 +12,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
+    
+    @Autowired
+	private AuthSuccessHandler successHandler;
 
     // roles admin allow to access /admin/**
     // roles user allow to access /user/**
@@ -25,7 +28,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers("/upload", "/admin").hasAnyRole("ADMIN")
 					.antMatchers("/user/**").hasAnyRole("USER")
 					.antMatchers("/superuser/**").hasAnyRole("SUPER")
-					.anyRequest().authenticated()
+					.and().formLogin().successHandler(successHandler) //Run AuthSuccessHandler class and redirect users
                 .and()
                 .formLogin()
 					.loginPage("/login")
