@@ -37,3 +37,19 @@ body {
     display: table;
     clear: both;
 }
+
+#stuContainer {
+    border: 1px solid grey;
+    width: 55vw;
+    height: 50vh;
+    overflow: auto;
+    margin: auto;
+            }
+#container {
+    margin-top: 30px;
+    margin-left: 15px;
+}
+#starter-template {
+    margin-top: 30px;
+    margin-left: 15px;
+}

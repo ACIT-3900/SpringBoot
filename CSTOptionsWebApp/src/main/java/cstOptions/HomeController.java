@@ -40,7 +40,7 @@ public class HomeController {
         return "user";
     }
     
-    @RequestMapping("/upload")
+    @RequestMapping("/admin/upload")
     public String upload() {
         return "uploadForm";
     }
@@ -54,7 +54,17 @@ public class HomeController {
     public String students() {
         return "students";
     }
-    
+
+    @RequestMapping("/search")
+    public String search() {
+        return "search";
+    }
+
+    @RequestMapping("/student-edit")
+    public String studentEdit() {
+        return "student-edit";
+    }
+
     @RequestMapping("/403")
     public String error403() {
     	return "../public/error/403";

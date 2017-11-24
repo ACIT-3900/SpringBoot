@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <head>
+        <style>
+            
+        </style>
+        <title>Search</title></head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+    <div id="container">
+        <h1>SEARCH</h1> 
+        <input id="searchVal" value="A00001234" type="text" placeholder="ID Number" pattern="A00+[0-9]{3,12}" title="Incorrect ID number or format"/>
+        <button id="searchBut" type="button">SEARCH</button>
+        <div id="result"></div>
+    </div>
+    
+    
+    <script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+        var search = document.getElementById("searchVal");
+        var result = document.getElementById("result");
+        
+        document.getElementById("searchBut").addEventListener("click", function(){
+            $.ajax({
+              url: "/students/searchById/" + search.value,
+              type:"get",
+              success: function(resp){
+                  console.log(resp);
+                  result.innerHTML = resp.ID + " " + resp.Name;
+              }
+            });
+        });
+    /*]]>*/
+    </script>
+</body>
+</html>

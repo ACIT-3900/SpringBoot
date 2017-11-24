@@ -7,41 +7,80 @@ public class Student {
     private String firstName;
     private String lastName;
     private int priority;
-    private String GPA;
+    private double GPA;
     private ArrayList<String> studentChoices;
     private String assignedOption;
     private String status;
+    private String reason;
 
-    public Student() {
-        this.ID = "A00000000";
+    //Default Constructor
+    public Student(){
+        this.ID =  "A00000000";
         this.firstName = "";
         this.lastName = "";
         this.priority = 0;
-        this.GPA = "";
+        this.GPA = 0;
         this.studentChoices = null;
         this.assignedOption = "";
-        this.status = "";
-
+        this.status = "Eligible";
     }
 
+    public Student(String ID, String firstName, String lastName, int priority, String status, ArrayList<String> choices){
+        this.ID =  ID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.priority = priority;
+        this.GPA = 0;
+        this.studentChoices = choices;
+        this.assignedOption = "";
+        this.status = status;
+    }
 
-    public Student(String id, String firstName, String lastName, int priority, String status, ArrayList<String> studentChoices) {
+    //Not-Default Constructor
+    public Student(String id, String firstName, String lastName, int priority, double GPA, ArrayList<String> studentChoices, String assignedOption, String status, String reason) {
         this.ID = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.priority = priority;
-        if (status.equals("")) {
-            this.status = "Eligible";
-        }
+        this.GPA = GPA;
         this.studentChoices = studentChoices;
+        this.assignedOption = assignedOption;
+        this.status = status;
+        this.reason = reason;
+    }
+    /* GETTERS */
+
+    public String getID(){
+        return ID;
     }
 
-    Student(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public String getName() {
+        return firstName+" "+lastName;
     }
 
-    String getFirstName() {
+    public int getPriority() {
+        return priority;
+    }
+
+    public double getGPA() {
+        return GPA;
+    }
+
+    public ArrayList<String> getStudentChoices() {
+        return studentChoices;
+    }
+
+    public String getAssignedOption(){
+        return assignedOption;
+    }
+
+    public String getStatus(){
+        return status;
+    }
+
+    public String getReason(){return reason;}
+
+    public String getFirstName() {
         return firstName;
     }
 
@@ -49,43 +88,19 @@ public class Student {
         return lastName;
     }
 
-    public String getAssignedOption() {
-        return assignedOption;
-    }
+    /* SETTERS */
 
-    public String getStatus() {
-        return status;
-    }
+    public void setID(String ID){this.ID=ID;}
 
-    public String getID() {
-        return ID;
-    }
+    public void setFirstName(String firstName){this.firstName=firstName;}
 
-    public String getName() {
-        return firstName + " " + lastName;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public String getGPA() {
-        return GPA;
-    }
-
-    public String getStudentChoices() {
-        String choices = "";
-        for(int i=0; i< studentChoices.size(); i++){
-            choices += studentChoices.get(i) + "\n";
-        }
-        return choices;
-    }
+    public void setLastName(String lastName){this.lastName=lastName;}
 
     public void setPriority(int priority) {
         this.priority = priority;
     }
 
-    public void setGPA(String GPA) {
+    public void setGPA(double GPA) {
         this.GPA = GPA;
     }
 
@@ -101,13 +116,16 @@ public class Student {
         this.status = status;
     }
 
+    public void setReason(String reason){this.reason = reason;}
+
+    /* FUNCTIONS */
     public String printStudentChoices() {
         if (studentChoices == null) {
             return null;
         } else {
             String str = "";
             for (int i = 0; i < studentChoices.size(); i++) {
-                str += studentChoices.get(i) + "\t";
+                str += studentChoices.get(i) + "/n";
             }
             return str;
         }
