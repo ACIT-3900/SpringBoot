@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="/css/index.css"/>
     <link href='https://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'/>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css"/>
 </head>
 <body>
     <div th:replace="header :: header"/>
@@ -17,7 +19,7 @@
         <div class="row">
             <div id="centerLogin" class="col-sm-4 col-md-8 col-lg-12">
                 <img id="cstoptionimg" src="../images/cstoption.png"/>
-                <form action= "/home">
+                <form action="/home">
                     <input id="inputID" class="centered" name="studentNumber" type="text" title="Enter an A00 Number" pattern="A+[0-9]{8}" required="required" autofocus="true" />
                     <input type="submit" value="Submit" id="indexSubmit" onclick="confirmID()"/>
                 </form>
@@ -36,13 +38,17 @@
 </body>
 <script>   
     function confirmID() {
-        var stuID = document.getElementById("inputID").value;
-        $.ajax({
-            type:"GET",
-            url: '/saveID',
-            data: {"stuID": stuID}
-            });
-        console.log(stuID);
-    }
+            
+            var stuID = document.getElementById("inputID").value;
+                $.ajax({
+                    type:"GET",
+                    url: '/saveID',
+                    data: {"stuID": stuID}
+                    });
+                console.log(stuID);
+                location.href("/home");
+          // result.dismiss can be 'cancel', 'overlay',
+          // 'close', and 'timer'
+          } 
     </script>    
 </html>
