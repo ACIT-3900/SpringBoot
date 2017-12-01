@@ -28,4 +28,4 @@ CSTOptionsWebApp/upload-dir/*
 CSTOptionsWebApp/students.csv
 *.csv
 *.DS_Store
-
+CSTOptionsWebApp/src/main/resources/static/node_modules
