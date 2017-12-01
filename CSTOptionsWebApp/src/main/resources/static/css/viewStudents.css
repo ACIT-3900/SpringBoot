@@ -1,7 +1,7 @@
 /* Side Menu Styling*/
 #sidebar-wrapper {
   left: 0;
-  top:0;
+top:0;
   width: 20vw;
   background-color: #F57C00;
   color: white;
@@ -44,11 +44,11 @@
     left: 200px;
   }
 }
-.navbar>.container{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
+.navBar{
+    padding: 0;
+}
+.navbar>.container, .navbar>.container-fluid {
+    justify-content: center;
 }
 
 .fontSize {
@@ -76,38 +76,12 @@ th {
     color: white;
 }
 
-* {
-    box-sizing: border-box;
-}
-
-/* Create two equal columns that floats next to each other */
-.column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
 #stuContainer {
     border: 1px solid grey;
     width: 55vw;
-    height: 50vh;
+    height: 90vh;
     overflow: auto;
     margin: auto;
-            }
-#container2 {
-    margin-top: 125px;
-}
-#starter-template {
-    margin-top: 30px;
-    margin-left: 15px;
 }
 .btn{
     color: #fff;

@@ -2,7 +2,7 @@
 #sidebar-wrapper {
   left: 0;
   top:0;
-  width: 20vw;
+  width: 17vw;
   background-color: #F57C00;
   color: white;
   position: fixed;
@@ -48,7 +48,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .fontSize {
@@ -98,12 +98,9 @@ th {
 #stuContainer {
     border: 1px solid grey;
     width: 55vw;
-    height: 50vh;
+    height: 70vh;
     overflow: auto;
     margin: auto;
-            }
-#container2 {
-    margin-top: 125px;
 }
 #starter-template {
     margin-top: 30px;
@@ -118,4 +115,15 @@ th {
     color: #fff;
     background-color: #F89E3F;
     border-color: #F89E3F; /*set the color you want here*/
+}
+#inputID {
+    width: 30%;
+    height: 40px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    outline: 0;
+    font-size: 22px;
+    padding:5px;
+    margin-bottom: 15px;
 }

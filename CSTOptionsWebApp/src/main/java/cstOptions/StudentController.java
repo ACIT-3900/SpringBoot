@@ -29,15 +29,15 @@ public class StudentController {
 
     @RequestMapping(value = "/addStudent/{id}/{selection}", method = RequestMethod.GET)
     @ResponseBody
-    public void addStudent(@PathVariable(name = "id") String id,
+    public String addStudent(@PathVariable(name = "id") String id,
                            @PathVariable(name = "selection") String selection){
-        studentDao.AddStudent(id, selection);
+        return studentDao.AddStudent(id, selection);
     }
 
     @RequestMapping(value = "/dropStudent/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public void dropStudent(@PathVariable(name = "id") String id) {
-        studentDao.DropStudent(id);
+    public String dropStudent(@PathVariable(name = "id") String id) {
+        return studentDao.DropStudent(id);
     }
 
     @RequestMapping(value = "/optionsDetail", method = RequestMethod.GET)
