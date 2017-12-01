@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>Spring Security Example </title>
     <div th:replace="header :: header-css"/>
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
 </head>
-<style>
-    .container{
-        top:30vh;
-    }
-</style>
 <body>
 
 <div th:replace="header :: header"/>
@@ -18,11 +14,10 @@
 <div class="container">
 
     <div class="row" style="margin-top:20vh">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form th:action="@{/login}" method="post">
-                <fieldset>
-                    <h1>Please Sign In</h1>
-
+        <div class="col-2"></div>
+        <div id="centerContainer" class="centerElements center-block col-8">
+            <form id="formStyle" class="centerElements" th:action="@{/login}" method="post">
+                    <h1 style="font-size: 40px;">Please Sign In</h1>
                     <div th:if="${param.error}">
                         <div class="alert alert-danger">
                             Invalid username and password.
@@ -35,31 +30,33 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="username" id="username" class="form-control input-lg"
-                               placeholder="UserName" required="true" autofocus="true"/>
+                        <input type="text" name="username" id="username" 
+                               placeholder="Username" required="true" autofocus="true"/>
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" id="password" class="form-control input-lg"
+                        <input type="password" name="password" id="password" 
                                placeholder="Password" required="true"/>
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <input id="sub" type="submit" class="btn btn-lg btn-primary btn-block" value="Sign In"/>
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <input id="sub" type="submit" class="btn" value="SIGN IN"/>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="col-2"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div id="forgotLogin" style="margin: 10px; Opacity:0.85">
+                <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-6">
+                            <div id="forgotLogin" style="margin-top: 150px; Opacity:0.85; font-size: 26px;">
                             Don't have a login or don't remember? Contact your program head of department to recieve credentials.
                             </div>
                         </div>
+                        <div class="col-3"></div>
                     </div>
-                    </div>
-                </fieldset>
             </form>
         </div>
+        <div class='col-2'></div>
     </div>
 
 </div>

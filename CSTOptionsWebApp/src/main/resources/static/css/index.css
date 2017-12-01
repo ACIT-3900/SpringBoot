@@ -17,14 +17,11 @@ body {
 }
 
 #mainContainer {
-    position: absolute;
     width: 100%;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
-    margin:auto;
-    text-align: center;
 }
 
 #headerBlock {
@@ -32,28 +29,12 @@ body {
     height: 100px;
 }
 
-#cstoptionimg {
-    max-width: 275px;
-    height: auto
-}
-
 #centerLogin {
     background: rgba(0,0,0,0.6);
-    margin: 0 auto;
-    padding: 30px 0 16px;
-    max-width: 300px;
+    width: 80vw;
     border-radius: 8px;
-    height: 388px;
-}
-
-#testIn {
-    background-color: black;
-    border-radius: 2px;
-    border: none;
-    width: 85%;
-    height: 25px;
-    margin: 10px;
-    color:white;
+    height: 70vh;
+    padding:60px;
 }
 
 #indexSubmit {
@@ -61,10 +42,37 @@ body {
     top: 125px;
     border: none;
     border-radius: 4px;
-    width: 85%;
-    height: 40px;
     background-color: gold;
-    
+    width: 80%;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#leftTitle {
+    color: orange;
+}
+#rightTitle {
+    color: orange;
+    text-align:center;
+}
+#loginForm {
+    padding:10px;
+    margin-top: 100px;
+}
+#inputID {
+    width: 70%;
+    height: 40px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    outline: 0;
+    font-size: 22px;
+    padding:5px;
+}
+#optionDesc {
+    color: white;
+    margin-top: 50px;
 }
 
 /* MEDIA QUERIES FOR MOBILE DEVICES BELOW DO NOT TOUCH*/
