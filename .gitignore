@@ -28,5 +28,3 @@ CSTOptionsWebApp/upload-dir/*
 CSTOptionsWebApp/students.csv
 *.csv
 *.DS_Store
-
-/bin/

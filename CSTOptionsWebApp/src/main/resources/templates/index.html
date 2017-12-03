@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="/css/index.css"/>
     <link href='https://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'/>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css"/>
 </head>
 <body>
     <div th:replace="header :: header"/>
@@ -46,13 +48,17 @@
 </body>
 <script>   
     function confirmID() {
-        var stuID = document.getElementById("inputID").value;
-        $.ajax({
-            type:"GET",
-            url: '/saveID',
-            data: {"stuID": stuID}
-            });
-        console.log(stuID);
-    }
+            
+            var stuID = document.getElementById("inputID").value;
+                $.ajax({
+                    type:"GET",
+                    url: '/saveID',
+                    data: {"stuID": stuID}
+                    });
+                console.log(stuID);
+                location.href("/home");
+          // result.dismiss can be 'cancel', 'overlay',
+          // 'close', and 'timer'
+          } 
     </script>    
 </html>
