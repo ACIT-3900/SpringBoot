@@ -183,7 +183,8 @@ public class StudentDao {
         return optionlist;
     }
 
-    public void AddStudent(String ID, String optionName){
+    public String AddStudent(String ID, String optionName){
+        String status = "failed";
         if(optName.contains(optionName)){
             Student stu = searchById(ID);
             if("NOTHING".equals(stu.getAssignedOption())){
@@ -191,6 +192,7 @@ public class StudentDao {
                     if(optionName.equals(opt.getCourseName())){
                         stu.setAssignedOption(opt.getCourseName());
                         opt.addStudentToList(stu);
+                        status = "success";
                         if(nullStuID.contains(stu.getID())){
                             nullList.remove(stu);
                         }
@@ -199,17 +201,23 @@ public class StudentDao {
                 }
             }else{System.out.println("Student is a part of "+stu.getAssignedOption()+" class. Please remove student first before trying again.");}
         }else{System.out.println("That is not a valid Option course");}
+        return status;
     }
-    public void DropStudent(String ID){
+    public String DropStudent(String ID){
         Student stu = searchById(ID);
+        String status = "failed";
         for(Options opt:optionlist){
             if(stu.getAssignedOption().equals(opt.getCourseName())){
                 opt.removeStudent(stu.getName());
                 stu.setAssignedOption("NOTHING");
                 nullList.add(stu);
                 nullStuID.add(stu.getName());
+                status = "success";
                 break;
+            } else {
+                status = "failed";
             }
         }
+        return status;
     }
 }
