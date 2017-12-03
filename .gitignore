@@ -29,3 +29,4 @@ CSTOptionsWebApp/students.csv
 *.csv
 *.DS_Store
 
+/bin/
