@@ -49,7 +49,7 @@ public class StudentDao {
             ReadOptionList(optionlist, "upload-dir/OptionSelectionControl.csv", optName);
 
             StudentPlacement place = new StudentPlacement(stulist, optionlist, nullList);
-            place.displayGPA();
+            place.studentPlacementSort();
             //Print Student List
             
             pWriter.println("-Student #,First Name,Last Name,Priority list,Status,First Choice,Second Choice,Third Choice,Fourth Choice");
