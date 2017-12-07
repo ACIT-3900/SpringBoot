@@ -12,6 +12,7 @@ public class Student {
     private String assignedOption;
     private String status;
     private String reason;
+    private int pointChecker;
 
     //Default Constructor
     public Student(){
@@ -23,9 +24,10 @@ public class Student {
         this.studentChoices = null;
         this.assignedOption = "";
         this.status = "Eligible";
+        this.pointChecker = 0;
     }
 
-    public Student(String ID, String firstName, String lastName, int priority, String status, ArrayList<String> choices){
+    public Student(String ID, String firstName, String lastName, int priority, String status, ArrayList<String> choices, int statusChecker){
         this.ID =  ID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,10 +36,11 @@ public class Student {
         this.studentChoices = choices;
         this.assignedOption = "";
         this.status = status;
+        this.pointChecker = statusChecker;
     }
 
     //Not-Default Constructor
-    public Student(String id, String firstName, String lastName, int priority, double GPA, ArrayList<String> studentChoices, String assignedOption, String status, String reason) {
+    public Student(String id, String firstName, String lastName, int priority, double GPA, ArrayList<String> studentChoices, String assignedOption, String status, String reason, int statusChecker) {
         this.ID = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,6 +50,7 @@ public class Student {
         this.assignedOption = assignedOption;
         this.status = status;
         this.reason = reason;
+        this.pointChecker = statusChecker;
     }
     /* GETTERS */
 
@@ -88,6 +92,10 @@ public class Student {
         return lastName;
     }
 
+    public int getPointChecker(){
+        return pointChecker;
+    }
+
     /* SETTERS */
 
     public void setID(String ID){this.ID=ID;}
@@ -116,7 +124,11 @@ public class Student {
         this.status = status;
     }
 
-    public void setReason(String reason){this.reason = reason;}
+    public void setReason(String reason){ this.reason = reason; }
+
+    public void setPointChecker(int checker){
+        this.pointChecker = checker;
+    }
 
     /* FUNCTIONS */
     public String printStudentChoices() {
