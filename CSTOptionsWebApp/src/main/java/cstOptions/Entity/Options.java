@@ -6,16 +6,19 @@ import java.util.ArrayList;
  * Created by rodne on 2017-10-11.
  */
 public class Options {
-    private String courseName;
+    private String optionName;
     private int capacity;
     private ArrayList<Student> classList = new ArrayList<>();
 
+    //Default Constructor
     public Options(){
-        this.courseName = "";
+        this.optionName = "";
         this.capacity = 0;
     }
-    public Options(String courseName, int capacity) {
-        this.courseName = courseName;
+
+    //Non-Default Constructor
+    public Options(String optionName, int capacity) {
+        this.optionName = optionName;
         this.capacity = capacity;
     }
 
@@ -25,8 +28,8 @@ public class Options {
         return capacity;
     }
 
-    public String getCourseName(){
-        return courseName;
+    public String getOptionName(){
+        return optionName;
     }
 
     public ArrayList<Student> getClassList(){
@@ -39,8 +42,8 @@ public class Options {
         this.capacity = capacity;
     }
 
-    public void setCourseName(String courseName){
-        this.courseName = courseName;
+    public void setOptionName(String optionName){
+        this.optionName = optionName;
     }
 
     public void setClassList(ArrayList<Student> newClassList){
@@ -49,6 +52,7 @@ public class Options {
 
     /* FUNCTIONS */
 
+    //Removes Student object from Option class list
     public void removeStudent(String studentName){
         for(Student s:classList){
             if (s.getName().equals(studentName)){
@@ -58,14 +62,16 @@ public class Options {
         }
     }
 
-    public void addStudentToList(Student stu){
-        classList.add(stu);
+    //Adds Student object to Option class list
+    public void addStudentToList(Student student){
+        classList.add(student);
     }
 
-    String checkStudentInClass(String stuID){
+    //Checks if student is inside Option class list
+    String checkStudentInClass(String studentID){
         String checker="";
         for(Student s:classList){
-            if(s.getID().equals(stuID)){
+            if(s.getID().equals(studentID)){
                 checker = "pos";
                 break;
             }
@@ -73,6 +79,7 @@ public class Options {
         return checker;
     }
 
+    //Returns an integer of empty seats in Option class list
     public int getEmptySeats() {
         if(classList == null){
             return capacity;

@@ -151,8 +151,8 @@ $(document).ready(function() {
                   for(var i=0; i < resp.length; i++){
                       console.log(resp[i]);
                       var option = document.createElement("option");
-                      option.value = resp[i].courseName;
-                      option.innerHTML = resp[i].courseName;
+                      option.value = resp[i].optionName;
+                      option.innerHTML = resp[i].optionName;
                       selection.appendChild(option)
                   } 
 
@@ -167,7 +167,7 @@ $(document).ready(function() {
               type:"get",
               success: function(resp){
                 for(var i=0; i < resp.length; i++){
-                if(resp[i].courseName == selection.value){
+                if(resp[i].optionName == selection.value){
                     myTable.innerHTML = "";
                     optionCap.innerHTML = "MAXIMUM CAPACITY: " + resp[i].capacity;
                     emptySeats.innerHTML = "AVAILABLE SEATS: " + resp[i].emptySeats;
