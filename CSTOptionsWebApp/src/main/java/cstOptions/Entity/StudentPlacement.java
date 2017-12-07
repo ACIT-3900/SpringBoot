@@ -1,8 +1,5 @@
 package cstOptions.Entity;
 
-import cstOptions.Entity.Options;
-import cstOptions.Entity.Student;
-
 import java.util.*;
 
 /**
@@ -145,9 +142,9 @@ public class StudentPlacement {
                     for(int i=0;i<stu.getStudentChoices().size();i++){
                         if(check ==0){
                             for(Options opt:optlist){
-                                if (opt.getCourseName().equals(stu.getStudentChoices().get(i)) && opt.getEmptySeats()!= 0) {
+                                if (opt.getOptionName().equals(stu.getStudentChoices().get(i)) && opt.getEmptySeats()!= 0) {
                                     opt.addStudentToList(stu);
-                                    stu.setAssignedOption(opt.getCourseName());
+                                    stu.setAssignedOption(opt.getOptionName());
                                     check++;
                                     break;
                                 }

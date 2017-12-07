@@ -189,8 +189,8 @@ public class StudentDao {
             Student stu = searchById(ID);
             if("NOTHING".equals(stu.getAssignedOption())){
                 for(Options opt:optionlist){
-                    if(optionName.equals(opt.getCourseName())){
-                        stu.setAssignedOption(opt.getCourseName());
+                    if(optionName.equals(opt.getOptionName())){
+                        stu.setAssignedOption(opt.getOptionName());
                         opt.addStudentToList(stu);
                         status = "success";
                         if(nullStuID.contains(stu.getID())){
@@ -207,7 +207,7 @@ public class StudentDao {
         Student stu = searchById(ID);
         String status = "failed";
         for(Options opt:optionlist){
-            if(stu.getAssignedOption().equals(opt.getCourseName())){
+            if(stu.getAssignedOption().equals(opt.getOptionName())){
                 opt.removeStudent(stu.getName());
                 stu.setAssignedOption("NOTHING");
                 nullList.add(stu);
