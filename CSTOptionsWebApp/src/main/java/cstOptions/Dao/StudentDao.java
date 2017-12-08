@@ -35,23 +35,8 @@ public class StudentDao {
 
         try
         {
-        	
         	File studentHTML = new File ("./students.csv");
         	PrintWriter pWriter = new PrintWriter (studentHTML);
-
-        	studentList.clear();
-        	optionList.clear();
-        	optionNameList.clear();
-        	studentIDList.clear();
-
-            //Reads files in
-            ReadStudentChoices(studentList, "upload-dir/StudentChoices.csv");
-            ReadStudentGPA(studentList, "upload-dir/StudentGPA.csv", studentIDList);
-            ReadOptionList(optionList, "upload-dir/OptionSelectionControl.csv", optionNameList);
-
-            //Performs all functions required to sort students into their Option course
-            StudentPlacement place = new StudentPlacement(studentList, optionList);
-            place.studentPlacementSort();
 
             //Print Student List
             pWriter.println("-Student #,First Name,Last Name,Priority list,Status,First Choice,Second Choice,Third Choice,Fourth Choice");
@@ -84,6 +69,31 @@ public class StudentDao {
             ee.printStackTrace();
 	        }
         return parsedStudentList;
+    }
+
+    //Generate data
+    public String generate(){
+        studentList.clear();
+        optionList.clear();
+        optionNameList.clear();
+        studentIDList.clear();
+
+        try {
+
+        //Reads files in
+        ReadStudentChoices(studentList, "upload-dir/StudentChoices.csv");
+        ReadStudentGPA(studentList, "upload-dir/StudentGPA.csv", studentIDList);
+        ReadOptionList(optionList, "upload-dir/OptionSelectionControl.csv", optionNameList);
+
+        //Performs all functions required to sort students into their Option course
+        StudentPlacement place = new StudentPlacement(studentList, optionList);
+        place.studentPlacementSort();
+
+        return "success";
+        } catch (Exception ee){
+            ee.printStackTrace();
+            return "failed";
+        }
     }
 
     //Reads Option CSV file and creates Option objects

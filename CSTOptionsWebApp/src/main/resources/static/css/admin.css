@@ -119,3 +119,6 @@ th {
     background-color: #F89E3F;
     border-color: #F89E3F; /*set the color you want here*/
 }
+form {
+    padding: 1em;
+}
