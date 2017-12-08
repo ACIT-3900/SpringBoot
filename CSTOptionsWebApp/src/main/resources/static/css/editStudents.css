@@ -116,6 +116,9 @@ th {
     background-color: #F89E3F;
     border-color: #F89E3F; /*set the color you want here*/
 }
+form {
+    padding: 1em;
+}
 #inputID {
     width: 30%;
     height: 40px;

@@ -12,6 +12,15 @@
 	<div class="container">
 		<div id="sidebar-wrapper" class="sidebar-toggle">
 			<ul class="sidebar-nav">
+                <li>
+                    <a href="#home">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Home</button>
+                            </form>
+                        </div>
+                    </a>
+                </li>
 		    	<li>
 		      		<a href="#item1">
                         <div class='fontSize'>
@@ -58,183 +67,6 @@
 
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-    $(window).resize(function() {
-	var path = $(this);
-	var contW = path.width();
-	if(contW >= 751){
-		document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-	}else{
-		document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-	}
-});
-$(document).ready(function() {
-	$('.dropdown').on('show.bs.dropdown', function(e){
-	    $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
-	});
-	$('.dropdown').on('hide.bs.dropdown', function(e){
-		$(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
-	});
-	$("#menu-toggle").click(function(e) {
-		e.preventDefault();
-		var elem = document.getElementById("sidebar-wrapper");
-		left = window.getComputedStyle(elem,null).getPropertyValue("left");
-		if(left == "200px"){
-			document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-		}
-		else if(left == "-200px"){
-			document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-		}
-	});
-
-        var myTable = document.getElementById("stuTable");
-        var selection = document.getElementById("optionSelect");
-        var optionCap = document.getElementById("maxCapacity");
-        var emptySeats = document.getElementById("emptySeats");
-        var addBut = document.getElementById("addBut");
-        var dropBut = document.getElementById("dropBut");
-        var updateBut = document.getElementById("updateBut");
-    
-        $.ajax({
-          url: "/students/getStudentName",
-          type:"get",
-          success: function(resp){
-              console.log(resp);
-              for(var i=0; i < resp.length; i++) {
-                var tr = document.createElement("tr");
-                var thID = document.createElement("th");
-                var thName = document.createElement("th");
-                var thGPA = document.createElement("th");
-                var thPriority = document.createElement("th");
-                var thStatus = document.createElement("th");
-                var thAssigned = document.createElement("th");
-                var thChoices = document.createElement("th");
-
-                var txtID = document.createTextNode(resp[i].ID);
-                var txtName = document.createTextNode(resp[i].Name);
-                var txtGPA = document.createTextNode(resp[i].GPA);
-                var txtPriority = document.createTextNode(resp[i].Priority);
-                var txtStatus = document.createTextNode(resp[i].Status);
-                var txtAssigned = document.createTextNode(resp[i].AssignedOption);
-                var ChoicesArray = resp[i].StudentChoices.split("/n");
-
-                    for(var j=0; j<ChoicesArray.length; j++){
-                        var txtChoices = document.createTextNode(ChoicesArray[j]);
-                        thChoices.appendChild(txtChoices);
-                        var linebreak = document.createElement("br");
-                        thChoices.appendChild(linebreak);
-                    }
-                console.log(txtChoices);
-
-                thID.appendChild(txtID);
-                thName.appendChild(txtName);
-                thGPA.appendChild(txtGPA);
-                thPriority.appendChild(txtPriority);
-                thStatus.appendChild(txtStatus);
-                thAssigned.appendChild(txtAssigned);
-
-                tr.appendChild(thID);
-                tr.appendChild(thName);
-                tr.appendChild(thGPA);
-                tr.appendChild(thPriority);
-                tr.appendChild(thStatus);
-                tr.appendChild(thAssigned);
-                tr.appendChild(thChoices);
-
-
-                myTable.appendChild(tr);
-            }
-            $.ajax({
-              url: "/students/optionsDetail",
-              type:"get",
-              success: function(resp){
-                  //For loop going through each Option
-                  for(var i=0; i < resp.length; i++){
-                      console.log(resp[i]);
-                      var option = document.createElement("option");
-                      option.value = resp[i].optionName;
-                      option.innerHTML = resp[i].optionName;
-                      selection.appendChild(option)
-                  } 
-
-              }
-            });
-        }
-});
-    
-        updateBut.addEventListener("click", function(){
-          $.ajax({
-              url: "/students/optionsDetail",
-              type:"get",
-              success: function(resp){
-                for(var i=0; i < resp.length; i++){
-                if(resp[i].optionName == selection.value){
-                    myTable.innerHTML = "";
-                    optionCap.innerHTML = "MAXIMUM CAPACITY: " + resp[i].capacity;
-                    emptySeats.innerHTML = "AVAILABLE SEATS: " + resp[i].emptySeats;
-                    for(var j=0; j < resp[i].classList.length; j++) {
-                        var tr = document.createElement("tr");
-                        var thID = document.createElement("th");
-                        var thName = document.createElement("th");
-                        var thGPA = document.createElement("th");
-                        var thPriority = document.createElement("th");
-                        var thStatus = document.createElement("th");
-                        var thAssigned = document.createElement("th");
-                        var thChoices = document.createElement("th");
-
-                        var txtID = document.createTextNode(resp[i].classList[j].id);
-                        var txtName = document.createTextNode(resp[i].classList[j].name);
-                        var txtGPA = document.createTextNode(resp[i].classList[j].gpa);
-                        var txtPriority = document.createTextNode(resp[i].classList[j].priority);
-                        var txtStatus = document.createTextNode(resp[i].classList[j].status);
-                        var txtAssigned = document.createTextNode(resp[i].classList[j].assignedOption);
-
-
-                      //Appending text nodes to cells
-                        thID.appendChild(txtID);
-                        thName.appendChild(txtName);
-                        thGPA.appendChild(txtGPA);
-                        thPriority.appendChild(txtPriority);
-                        thStatus.appendChild(txtStatus);
-                        thAssigned.appendChild(txtAssigned);
-
-                      //Appending cells to row
-                        tr.appendChild(thID);
-                        tr.appendChild(thName);
-                        tr.appendChild(thGPA);
-                        tr.appendChild(thPriority);
-                        tr.appendChild(thStatus);
-                        tr.appendChild(thAssigned);
-                        tr.appendChild(thChoices);
-
-                      //Appending row to table(for one option.)
-                        myTable.appendChild(tr);
-                } 
-                    }
-                }
-              }
-          });
-        });
-        addBut.addEventListener("click", function(){
-            var stuID = document.getElementById("studentId").value;
-            $.ajax({
-                url: "/students/addStudent/" + stuID +"/" + selection.value,
-                  type:"get",
-                  success: function(resp){ 
-                      console.log(resp);
-              }
-            });
-        });
-        dropBut.addEventListener("click", function(){
-            var stuID = document.getElementById("studentId").value;
-            $.ajax({
-                url: "/students/dropStudent/" + stuID,
-                  type:"get",
-                  success: function(resp){ 
-                      console.log(resp);
-              }
-            });
-        });
-    });
     /*]]>*/
     </script>
 </body>

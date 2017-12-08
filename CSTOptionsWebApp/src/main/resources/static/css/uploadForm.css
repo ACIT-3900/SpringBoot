@@ -1,7 +1,7 @@
 /* Side Menu Styling*/
 #sidebar-wrapper {
   left: 0;
-top:0;
+  top:0;
   width: 20vw;
   background-color: #F57C00;
   color: white;
@@ -44,10 +44,10 @@ top:0;
     left: 200px;
   }
 }
-.navBar{
-    padding: 0;
-}
-.navbar>.container, .navbar>.container-fluid {
+.navbar>.container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
 }
 
@@ -55,33 +55,9 @@ top:0;
     font-size: 20px;
 }
 #mainbody {
-	    margin: 0;
-	    padding: 0;
-	    background-color: #262626;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even){background-color: #ffffff}
-
-th {
+    margin: 0;
+    padding: 0;
     background-color: #262626;
-    color: white;
-}
-
-#stuContainer {
-    border: 1px solid grey;
-    width: 55vw;
-    height: 90vh;
-    overflow: auto;
-    margin: auto;
 }
 .btn{
     color: #fff;
@@ -95,4 +71,5 @@ th {
 }
 form {
     padding: 1em;
+    margin: 0;
 }

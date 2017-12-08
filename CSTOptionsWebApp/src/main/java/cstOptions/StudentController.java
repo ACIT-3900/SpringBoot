@@ -21,6 +21,11 @@ public class StudentController {
         return studentDao.getAllStudents();
     }
 
+    @RequestMapping(value = "/generate", method = RequestMethod.GET)
+    public String generate(){
+        return studentDao.generate();
+    }
+
     @RequestMapping(value = "/searchById/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Student searchById(@PathVariable(name = "id") String id){
