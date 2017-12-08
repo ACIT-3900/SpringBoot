@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="/css/editStudents.css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body id="mainbody">
+    <nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div id="sidebar-wrapper" class="sidebar-toggle">
+			<ul class="sidebar-nav">
+                <li>
+                    <a href="#home">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Home</button>
+                            </form>
+                        </div>
+                    </a>
+                </li>
+		    	<li>
+		      		<a href="#item1">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin/upload}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Upload</button>
+                            </form>
+                        </div>
+                    </a>
+		    	</li>
+		    	<li>
+		      		<a href="#item2">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin/viewStudents}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">View Students</button>
+                            </form>
+                        </div>
+                    </a>
+		    	</li>
+		    	<li>
+		      		<a href="#item3">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin/editStudents}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Edit/Re-assign Students</button>
+                            </form></div>
+                    </a>
+		    	</li>
+                <li>
+		      		<a href="#item4">
+                        <div class='fontSize'>
+                            <form th:action="@{/logout}" method="post">
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Sign Out</button>
+                            </form>
+                        </div>
+                    </a>
+		    	</li>
+		  	</ul>
+		</div>
+        <div id="container2">
+            <div id="editDiv">
+            <font style="font-size: 22px; color:white;">Enter ID: </font><input id="inputID" class="centered" palceholder="BCIT ID" name="studentNumber" type="text" title="Enter an A00 Number" pattern="A+[0-9]{8}" required="required" autofocus="true" />    
+            <br />
+            <button id="addBut" class="btn btn-default btn-large" style="float:left">Add Student</button>
+            <button id="dropBut" class="btn btn-default btn-large" style="margin-left: 10px;">Drop Student</button>
+            <br />
+            <br />
+            <select id="optionSelect" style="float:left"></select> 
+            <br />
+            <br />
+            <button id="updateBut" class="btn btn-default btn-large" style="float:left">Update</button>
+            <br />
+            <br />
+                <div id="maxCapacity" style="color:white; float:left"></div>
+                <div id="emptySeats" style="color:white; float:right"></div>
+                <h2 style="color:white; text-align:center">Class List</h2>
+
+                <div id="stuContainer">
+                <table id="stuTable" style="border: 1px solid black;">
+                    <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>GPA</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Assigned Option</th>
+                    <th>Student Choices</th>
+                  </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+  	</div>
+</nav>
+
+<!-- /.container -->
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+$(document).ready(function() {
+
+        var myTable = document.getElementById("stuTable");
+        var selection = document.getElementById("optionSelect");
+        var optionCap = document.getElementById("maxCapacity");
+        var emptySeats = document.getElementById("emptySeats");
+        var addBut = document.getElementById("addBut");
+        var dropBut = document.getElementById("dropBut");
+        var updateBut = document.getElementById("updateBut");
+    
+        $.ajax({
+          url: "/students/getStudentName",
+          type:"get",
+          success: function(resp){
+              console.log(resp);
+              for(var i=0; i < resp.length; i++) {
+                var tr = document.createElement("tr");
+                var thID = document.createElement("th");
+                var thName = document.createElement("th");
+                var thGPA = document.createElement("th");
+                var thPriority = document.createElement("th");
+                var thStatus = document.createElement("th");
+                var thAssigned = document.createElement("th");
+                var thChoices = document.createElement("th");
+
+                var txtID = document.createTextNode(resp[i].ID);
+                var txtName = document.createTextNode(resp[i].Name);
+                var txtGPA = document.createTextNode(resp[i].GPA);
+                var txtPriority = document.createTextNode(resp[i].Priority);
+                var txtStatus = document.createTextNode(resp[i].Status);
+                var txtAssigned = document.createTextNode(resp[i].AssignedOption);
+                var ChoicesArray = resp[i].StudentChoices.split("/n");
+
+                    for(var j=0; j<ChoicesArray.length; j++){
+                        var txtChoices = document.createTextNode(ChoicesArray[j]);
+                        thChoices.appendChild(txtChoices);
+                        var linebreak = document.createElement("br");
+                        thChoices.appendChild(linebreak);
+                    }
+                console.log(txtChoices);
+
+                thID.appendChild(txtID);
+                thName.appendChild(txtName);
+                thGPA.appendChild(txtGPA);
+                thPriority.appendChild(txtPriority);
+                thStatus.appendChild(txtStatus);
+                thAssigned.appendChild(txtAssigned);
+
+                tr.appendChild(thID);
+                tr.appendChild(thName);
+                tr.appendChild(thGPA);
+                tr.appendChild(thPriority);
+                tr.appendChild(thStatus);
+                tr.appendChild(thAssigned);
+                tr.appendChild(thChoices);
+
+
+                myTable.appendChild(tr);
+            }
+            $.ajax({
+              url: "/students/optionsDetail",
+              type:"get",
+              success: function(resp){
+                  //For loop going through each Option
+                  for(var i=0; i < resp.length; i++){
+                      console.log(resp[i]);
+                      var option = document.createElement("option");
+                      option.value = resp[i].optionName;
+                      option.innerHTML = resp[i].optionName;
+                      selection.appendChild(option)
+                  } 
+
+              }
+            });
+        }
+});
+    
+        updateBut.addEventListener("click", function(){
+          $.ajax({
+              url: "/students/optionsDetail",
+              type:"get",
+              success: function(resp){
+                for(var i=0; i < resp.length; i++){
+                if(resp[i].optionName == selection.value){
+                    myTable.innerHTML = "";
+                    optionCap.innerHTML = "MAXIMUM CAPACITY: " + resp[i].capacity;
+                    emptySeats.innerHTML = "AVAILABLE SEATS: " + resp[i].emptySeats;
+                    for(var j=0; j < resp[i].classList.length; j++) {
+                        var tr = document.createElement("tr");
+                        var thID = document.createElement("th");
+                        var thName = document.createElement("th");
+                        var thGPA = document.createElement("th");
+                        var thPriority = document.createElement("th");
+                        var thStatus = document.createElement("th");
+                        var thAssigned = document.createElement("th");
+                        var thChoices = document.createElement("th");
+
+                        var txtID = document.createTextNode(resp[i].classList[j].id);
+                        var txtName = document.createTextNode(resp[i].classList[j].name);
+                        var txtGPA = document.createTextNode(resp[i].classList[j].gpa);
+                        var txtPriority = document.createTextNode(resp[i].classList[j].priority);
+                        var txtStatus = document.createTextNode(resp[i].classList[j].status);
+                        var txtAssigned = document.createTextNode(resp[i].classList[j].assignedOption);
+
+
+                      //Appending text nodes to cells
+                        thID.appendChild(txtID);
+                        thName.appendChild(txtName);
+                        thGPA.appendChild(txtGPA);
+                        thPriority.appendChild(txtPriority);
+                        thStatus.appendChild(txtStatus);
+                        thAssigned.appendChild(txtAssigned);
+
+                      //Appending cells to row
+                        tr.appendChild(thID);
+                        tr.appendChild(thName);
+                        tr.appendChild(thGPA);
+                        tr.appendChild(thPriority);
+                        tr.appendChild(thStatus);
+                        tr.appendChild(thAssigned);
+                        tr.appendChild(thChoices);
+
+                      //Appending row to table(for one option.)
+                        myTable.appendChild(tr);
+                } 
+                    }
+                }
+              }
+          });
+        });
+        addBut.addEventListener("click", function(){
+            var stuID = document.getElementById("inputID").value;
+            $.ajax({
+                url: "/students/addStudent/" + stuID +"/" + selection.value,
+                  type:"get",
+                  success: function(resp){ 
+                      if(resp == 'success'){
+                          swal({
+                          icon: 'success',
+                          title: 'Student Added!',
+                          button: false,
+                          timer: 1500
+                        });
+                      } else {
+                          swal({
+                          icon: 'error',
+                          title: 'Student is already in an Option or doesnt exist :(',
+                          button: false,
+                          timer: 1500
+                        });
+                      }
+              }
+            });
+        });
+        dropBut.addEventListener("click", function(){
+            var stuID = document.getElementById("inputID").value;
+            $.ajax({
+                url: "/students/dropStudent/" + stuID,
+                  type:"get",
+                  success: function(resp){ 
+                      if(resp == 'success'){
+                          swal({
+                          icon: 'success',
+                          title: 'Student Dropped!',
+                          button: false,
+                          timer: 1500
+                        });
+                      } else {
+                          swal({
+                          icon: 'error',
+                          title: 'Student is not in an Option or doesnt exist :(',
+                          button: false,
+                          timer: 1500
+                        });
+                      }
+              }
+            });
+        });
+    });
+    /*]]>*/
+    </script>
+</body>
+</html>

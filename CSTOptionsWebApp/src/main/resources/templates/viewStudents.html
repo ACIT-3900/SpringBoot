@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="/css/viewStudents.css"/>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body id="mainbody">
+    <nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div id="sidebar-wrapper" class="sidebar-toggle">
+			<ul class="sidebar-nav">
+                <li>
+                    <a href="#home">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Home</button>
+                            </form>
+                        </div>
+                    </a>
+                </li>
+		    	<li>
+		      		<a href="#item1">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin/upload}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Upload</button>
+                            </form>
+                        </div>
+                    </a>
+		    	</li>
+		    	<li>
+		      		<a href="#item2">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin/viewStudents}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">View Students</button>
+                            </form>
+                        </div>
+                    </a>
+		    	</li>
+		    	<li>
+		      		<a href="#item3">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin/editStudents}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Edit/Re-assign Students</button>
+                            </form></div>
+                    </a>
+		    	</li>
+                <li>
+		      		<a href="#item4">
+                        <div class='fontSize'>
+                            <form th:action="@{/logout}" method="post">
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Sign Out</button>
+                            </form>
+                        </div>
+                    </a>
+		    	</li>
+		  	</ul>
+		</div>
+        <div id="container2">
+    <div id="optionView">
+        <h2 id="optionTitle" style="color:white; float:middle">All Students</h2>
+
+        <div id="maxCapacity" style="float:left"></div>
+        <div id="emptySeats" style="float:right"></div>
+        <h2 style="text-align:center">Class List</h2>
+
+        <div id="stuContainer">
+        <table id="stuTable" style="border: 1px solid black;">
+            <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>GPA</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Assigned Option</th>
+            <th>Student Choices</th>
+          </tr>
+            </table>
+        </div>
+    </div>
+</div>
+        
+  	</div>
+</nav>
+
+<!-- /.container -->
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    $(window).resize(function() {
+	var path = $(this);
+	var contW = path.width();
+	if(contW >= 751){
+		document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
+	}else{
+		document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
+	}
+});
+$(document).ready(function() {
+        var myTable = document.getElementById("stuTable");
+        var optionCap = document.getElementById("maxCapacity");
+        var emptySeats = document.getElementById("emptySeats");
+    
+        $.ajax({
+          url: "/students/getStudentName",
+          type:"get",
+          success: function(resp){
+              console.log(resp);
+              for(var i=0; i < resp.length; i++) {
+                var tr = document.createElement("tr");
+                var thID = document.createElement("th");
+                var thName = document.createElement("th");
+                var thGPA = document.createElement("th");
+                var thPriority = document.createElement("th");
+                var thStatus = document.createElement("th");
+                var thAssigned = document.createElement("th");
+                var thChoices = document.createElement("th");
+
+                var txtID = document.createTextNode(resp[i].ID);
+                var txtName = document.createTextNode(resp[i].Name);
+                var txtGPA = document.createTextNode(resp[i].GPA);
+                var txtPriority = document.createTextNode(resp[i].Priority);
+                var txtStatus = document.createTextNode(resp[i].Status);
+                var txtAssigned = document.createTextNode(resp[i].AssignedOption);
+                var ChoicesArray = resp[i].StudentChoices.split("/n");
+
+                    for(var j=0; j<ChoicesArray.length; j++){
+                        var txtChoices = document.createTextNode(ChoicesArray[j]);
+                        thChoices.appendChild(txtChoices);
+                        var linebreak = document.createElement("br");
+                        thChoices.appendChild(linebreak);
+                    }
+                console.log(txtChoices);
+
+                thID.appendChild(txtID);
+                thName.appendChild(txtName);
+                thGPA.appendChild(txtGPA);
+                thPriority.appendChild(txtPriority);
+                thStatus.appendChild(txtStatus);
+                thAssigned.appendChild(txtAssigned);
+
+                tr.appendChild(thID);
+                tr.appendChild(thName);
+                tr.appendChild(thGPA);
+                tr.appendChild(thPriority);
+                tr.appendChild(thStatus);
+                tr.appendChild(thAssigned);
+                tr.appendChild(thChoices);
+
+
+                myTable.appendChild(tr);
+            }
+        }
+});
+    });
+    /*]]>*/
+    </script>
+</body>
+</html>

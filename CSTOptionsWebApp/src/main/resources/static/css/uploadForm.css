@@ -1,0 +1,75 @@
+/* Side Menu Styling*/
+#sidebar-wrapper {
+  left: 0;
+  top:0;
+  width: 20vw;
+  background-color: #F57C00;
+  color: white;
+  position: fixed;
+  height: 100vh;
+  z-index: 1;
+}
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  margin-top: 30px;
+  padding: 15px;
+  width: 20vw;
+  list-style: none;
+}
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 50px;
+}
+.sidebar-nav li a {
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+.sidebar-nav li a:hover {
+  background: rgba(255,255,255,0.25);
+  color: white;
+  text-decoration: none;
+}
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+  text-decoration: none;
+}
+#sidebar-wrapper.sidebar-toggle {
+  transition: all 0.3s ease-out;
+  margin-left: -200px;
+}
+@media (min-width: 768px) {
+  #sidebar-wrapper.sidebar-toggle {
+    transition: 0s;
+    left: 200px;
+  }
+}
+.navbar>.container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.fontSize {
+    font-size: 20px;
+}
+#mainbody {
+    margin: 0;
+    padding: 0;
+    background-color: #262626;
+}
+.btn{
+    color: #fff;
+    background-color: #F57C00;
+    border-color: #F57C00; /*set the color you want here*/
+}
+.btn:hover, .btn:focus, .btn:active, .open>.dropdown-toggle.btn {
+    color: #fff;
+    background-color: #F89E3F;
+    border-color: #F89E3F; /*set the color you want here*/
+}
+form {
+    padding: 1em;
+    margin: 0;
+}

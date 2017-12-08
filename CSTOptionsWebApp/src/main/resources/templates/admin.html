@@ -1,31 +1,73 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="header :: header-css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="/css/admin.css"/>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
 
-<div th:replace="header :: header"/>
+<body id="mainbody">
+    <nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div id="sidebar-wrapper" class="sidebar-toggle">
+			<ul class="sidebar-nav">
+                <li>
+                    <a href="#home">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Home</button>
+                            </form>
+                        </div>
+                    </a>
+                </li>
+		    	<li>
+		      		<a href="#item1">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin/upload}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Upload</button>
+                            </form>
+                        </div>
+                    </a>
+		    	</li>
+		    	<li>
+		      		<a href="#item2">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin/viewStudents}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">View Students</button>
+                            </form>
+                        </div>
+                    </a>
+		    	</li>
+		    	<li>
+		      		<a href="#item3">
+                        <div class='fontSize'>
+                            <form th:action="@{/admin/editStudents}" method="post" >
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Edit/Re-assign Students</button>
+                            </form></div>
+                    </a>
+		    	</li>
+                <li>
+		      		<a href="#item4">
+                        <div class='fontSize'>
+                            <form th:action="@{/logout}" method="post">
+                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Sign Out</button>
+                            </form>
+                        </div>
+                    </a>
+		    	</li>
+		  	</ul>
+		</div>
+        <div style="color:azure; font-size:1em; text-align: left">
+            <h1>Admin page (Spring Security protected)</h1>
+            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        </div>
+  	</div>
+</nav>
 
-<div class="container" style="margin:20vh;">
-
-    <div class="starter-template">
-        <h1>Admin page (Spring Security protected)</h1>
-
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/upload}" method="post">
-            <input type="submit" value="Upload files"/>
-        </form>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-
-    </div>
-
-</div>
-<!-- /.container -->
-
-<div th:replace="footer :: footer"/>
-
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    /*]]>*/
+    </script>
 </body>
 </html>

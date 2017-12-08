@@ -29,6 +29,7 @@ public class Application {
     @Bean
     CommandLineRunner init(StorageService storageService) {
         return (args) -> {
+            storageService.deleteAll();
             storageService.init();
         };
     }
@@ -40,7 +41,7 @@ public class Application {
         srb.setUrlMappings(Arrays.asList("/saveSelections"));
         return srb;
     }
-    
+
     @Bean
     ServletRegistrationBean myServletRegistration2 () {
         ServletRegistrationBean srb = new ServletRegistrationBean();
@@ -48,7 +49,7 @@ public class Application {
         srb.setUrlMappings(Arrays.asList("/saveID"));
         return srb;
     }
-    
+
     @Bean
     FilterRegistrationBean myFilterRegistration () {
         FilterRegistrationBean frb = new FilterRegistrationBean();
