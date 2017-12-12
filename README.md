@@ -60,7 +60,11 @@ Step 2 - Running the Web Server
 
 4. Wait for SpringBoot to load for around a minute
 
-5. Go to your favourite web browser and enter localhost:8082 on the address bar
+5. Go to your favourite web browser and enter localhost:8082/login on the address bar
+
+6. Username: admin
+
+7. Password: password
 
 ```
 
