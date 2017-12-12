@@ -81,9 +81,9 @@ public class StudentDao {
         try {
 
         //Reads files in
-        ReadStudentChoices(studentList, "upload-dir/StudentChoices.csv");
-        ReadStudentGPA(studentList, "upload-dir/StudentGPA.csv", studentIDList);
-        ReadOptionList(optionList, "upload-dir/OptionSelectionControl.csv", optionNameList);
+        ReadStudentChoices(studentList, "upload-dir/StudentChoicesTeemo.csv");
+        ReadStudentGPA(studentList, "upload-dir/StudentGPATeemo.csv", studentIDList);
+        ReadOptionList(optionList, "upload-dir/OptionsSelectionTeemo.csv", optionNameList);
 
         //Performs all functions required to sort students into their Option course
         StudentPlacement place = new StudentPlacement(studentList, optionList);
