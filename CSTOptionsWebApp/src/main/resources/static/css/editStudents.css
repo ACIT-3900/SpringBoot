@@ -2,7 +2,7 @@
 #sidebar-wrapper {
   left: 0;
   top:0;
-  width: 17vw;
+  width: 20vw;
   background-color: #F57C00;
   color: white;
   position: fixed;
@@ -44,15 +44,13 @@
     left: 200px;
   }
 }
-.navbar>.container{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+.navbar>.container, .navbar>.container-fluid {
     justify-content: center;
 }
 
 .fontSize {
-    font-size: 20px;
+    font-size: 24px;
+    margin-bottom: 25px;
 }
 #mainbody {
 	    margin: 0;
@@ -93,6 +91,10 @@ th {
     content: "";
     display: table;
     clear: both;
+}
+
+.swal-modal {
+    padding: 20px;
 }
 
 #stuContainer {

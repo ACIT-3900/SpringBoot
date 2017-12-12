@@ -25,7 +25,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
 					.antMatchers("/index", "/home", "/login", "/user", "/done").permitAll()
-					.antMatchers("/upload", "/admin").hasAnyRole("ADMIN")
+					.antMatchers("/upload/**", "/admin/**", "/files/**", "/uploadForm/**", "/saveSelections/**").hasAnyRole("ADMIN")
 					.antMatchers("/user/**").hasAnyRole("USER")
 					.antMatchers("/superuser/**").hasAnyRole("SUPER")
 					.and().formLogin().successHandler(successHandler) //Run AuthSuccessHandler class and redirect users

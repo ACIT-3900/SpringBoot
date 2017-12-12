@@ -35,19 +35,19 @@ public class StudentDao {
 
         try
         {
-        	File studentHTML = new File ("./students.csv");
+        	File studentHTML = new File ("./upload-dir/StudentPlacement.csv");
         	PrintWriter pWriter = new PrintWriter (studentHTML);
 
             //Print Student List
-            pWriter.println("-Student #,First Name,Last Name,Priority list,Status,First Choice,Second Choice,Third Choice,Fourth Choice");
-            
+            pWriter.println("ID,First Name,Last Name,Priority list,Status,Option Placement,First Choice,Second Choice,Third Choice,Fourth Choice");
+
             for(Student student : studentList){
             	String studentName = student.getName();
             	String[] firstLastName = studentName.split("\\s+");
             	String studentChoices = student.printStudentChoices();
             	String[] allChoices = studentChoices.split("/n");
-                
-                pWriter.println(student.getID()+","+firstLastName[0]+","+firstLastName[1]+","+ student.getPriority()+","+ student.getStatus()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
+
+                pWriter.println(student.getID()+","+firstLastName[0]+","+firstLastName[1]+","+ student.getPriority()+","+ student.getStatus()+","+student.getAssignedOption()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
 
                 HashMap<String, String> studentInfo = new HashMap<>();
                 studentInfo.put("ID", student.getID());
@@ -78,6 +78,8 @@ public class StudentDao {
         optionNameList.clear();
         studentIDList.clear();
 
+        ArrayList<HashMap<String, String>> parsedStudentList = new ArrayList<>();
+
         try {
 
         //Reads files in
@@ -89,6 +91,36 @@ public class StudentDao {
         StudentPlacement place = new StudentPlacement(studentList, optionList);
         place.studentPlacementSort();
 
+        File studentHTML = new File ("./upload-dir/StudentPlacement.csv");
+        PrintWriter pWriter = new PrintWriter (studentHTML);
+
+        //Print Student List
+        pWriter.println("ID,First Name,Last Name,Priority list,Status,Option Placement,First Choice,Second Choice,Third Choice,Fourth Choice");
+
+        for(Student student : studentList){
+            String studentName = student.getName();
+            String[] firstLastName = studentName.split("\\s+");
+            String studentChoices = student.printStudentChoices();
+            String[] allChoices = studentChoices.split("/n");
+
+            pWriter.println(student.getID()+","+firstLastName[0]+","+firstLastName[1]+","+ student.getPriority()+","+ student.getStatus()+","+student.getAssignedOption()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
+
+            HashMap<String, String> studentInfo = new HashMap<>();
+            studentInfo.put("ID", student.getID());
+            studentInfo.put("Name", student.getName());
+            studentInfo.put("GPA", String.valueOf(student.getGPA()));
+            studentInfo.put("Priority", Integer.toString(student.getPriority()));
+            studentInfo.put("Status", student.getStatus());
+            studentInfo.put("AssignedOption", student.getAssignedOption());
+            studentInfo.put("StudentChoices", student.printStudentChoices());
+
+            parsedStudentList.add(studentInfo);
+        }
+
+        pWriter.close();
+        CheckOverFlow(studentList, optionList);
+        CheckInEligibleStudents(studentList);
+
         return "success";
         } catch (Exception ee){
             ee.printStackTrace();
@@ -97,7 +129,7 @@ public class StudentDao {
     }
 
     //Reads Option CSV file and creates Option objects
-    public static void ReadOptionList(ArrayList<Options> optionList, String filename, Set<String> optionNameList)throws IOException{
+    private static void ReadOptionList(ArrayList<Options> optionList, String filename, Set<String> optionNameList)throws IOException{
 
         BufferedReader br;
         String line;
@@ -122,7 +154,7 @@ public class StudentDao {
     }
 
     //Reads Student Choice CSV file and creates Student objects
-    public static void ReadStudentChoices(ArrayList<Student> studentList, String filename) throws IOException {
+    private static void ReadStudentChoices(ArrayList<Student> studentList, String filename) throws IOException {
 
         BufferedReader br;
         String line;
@@ -170,7 +202,7 @@ public class StudentDao {
     }
 
     //Reads Student GPA CSV file and adds GPA to Student objects
-    public static void ReadStudentGPA(ArrayList<Student> studentList, String filename, Set<String> studentIDList) throws IOException {
+    private static void ReadStudentGPA(ArrayList<Student> studentList, String filename, Set<String> studentIDList) throws IOException {
 
         String line;
         BufferedReader br;
@@ -193,7 +225,7 @@ public class StudentDao {
     }
 
     //Checks to see if number of students is greater than capacity
-    public static void CheckOverFlow(ArrayList<Student> studentList, ArrayList<Options> optionList){
+    private static void CheckOverFlow(ArrayList<Student> studentList, ArrayList<Options> optionList){
         int totalCapacity = 0;
         int totalStudents = studentList.size();
 
@@ -209,7 +241,7 @@ public class StudentDao {
     }
 
     //Prints out all students who are ineligible
-    public static void CheckInEligibleStudents(ArrayList<Student> stulist){
+    private static void CheckInEligibleStudents(ArrayList<Student> stulist){
         System.out.println("Ineligible Students:");
         for(Student stu:stulist){
             if(stu.getPointChecker() == 1){
