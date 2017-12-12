@@ -4,7 +4,7 @@ The CST program will incorporate a web application to help automate and ease the
 
 ## Getting Started
 
-THe JavaRepo is our program side of the project and runs algorithm to place student according to their GPA and priority levels. Keep on reading on instructions to get this JavaRepo up and running!
+THe JavaRepo is our program side of the project and runs algorithm to place student according to their GPA and priority levels. Keep on reading for instructions on how to get this web application up and running!
 
 ### Prerequisites
 
@@ -13,7 +13,7 @@ What things you need to install the software and how to install them
 
 * A Java IDE that is able to use Java. We recommend [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows).
 
-* [Java JDK and JRE](http://www.oracle.com/technetwork/java/javase/downloads/index.html)  downloaded. (Remember which folder as we will be using it later on)
+* [Java JDK and JRE](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)  downloaded. (Remember which folder as we will be using it later on)
 
 
 ### Installing
