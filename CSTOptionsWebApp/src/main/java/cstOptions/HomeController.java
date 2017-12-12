@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
 
-    @RequestMapping("/home")
+    @RequestMapping("/studentSelection")
     public String greeting(@RequestParam(value="name", required=false, defaultValue="Your ID was not properly registered") String name, Model model) {
         model.addAttribute("name", name);
-        return "home";
+        return "studentSelection";
     }
     
     @RequestMapping("/")
@@ -35,19 +35,16 @@ public class HomeController {
         return "admin";
     }
     
-    @RequestMapping("/user")
-    public String user() {
-        return "user";
-    }
-    
     @RequestMapping("/admin/upload")
     public String upload() {
         return "uploadForm";
     }
+
     @RequestMapping("/admin/viewStudents")
     public String viewStudents() {
         return "viewStudents";
     }
+
     @RequestMapping("/admin/editStudents")
     public String editStudents() {
         return "editStudents";
@@ -56,16 +53,6 @@ public class HomeController {
     @RequestMapping("/login")
     public String login() {
         return "login";
-    }
-
-    @RequestMapping("/students")
-    public String students() {
-        return "students";
-    }
-
-    @RequestMapping("/search")
-    public String search() {
-        return "search";
     }
 
     @RequestMapping("/403")
