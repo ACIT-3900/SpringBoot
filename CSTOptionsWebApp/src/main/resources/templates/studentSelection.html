@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="/css/home.css"/>
     <link href='https://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'/>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
     <div th:replace="header :: header"/>
@@ -16,8 +17,7 @@
         <div class="row">
             <div id="headerBlock"></div>
             <div id="centerHome" class="col-sm-4 col-md-8 col-lg-12">
-                <img id="cstoptionimg" src="../images/cstoption.png"/>
-                <div style="margin:20px;">Pick your options here!</div>
+                <div style="margin:20px; font-size: 42px">Pick your options here!</div>
                 
                 <div>First Pick</div>
                 <select id="option1" name="option1" class="optionPicker">
@@ -94,41 +94,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </body>
 <script>
 /*<![CDATA[*/
     function confirmSubmit() {
-        var confirmCheck = confirm("You can not make changes to your options once submitted. Press OK to confirm.");
-        if (confirmCheck == true){
+        var confirmCheck = false;
+        
+            swal({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, this is it!'
+            }).then((result) => {
+              if (result.value) {
+                swal(
+                  'Done!',
+                  'Processing your request~',
+                  'success'
+                )
+                
+                /* after confirming */
+                console.log("Saving to file...");
             
-            console.log("Saving to file...");
-            
-            var firstP = document.getElementById("option1").value;
-            var secondP = document.getElementById("option2").value;
-            var thirdP = document.getElementById("option3").value;
-            var fourthP = document.getElementById("option4").value;
-            
-            console.log(firstP, secondP, thirdP, fourthP);
-            
-            if(firstP !== secondP && firstP !== thirdP && firstP !== fourthP &&  secondP !== thirdP && secondP !== fourthP 
-                 && thirdP !== fourthP ) {
-                $.ajax({
-                  type:"GET",
-                  url: '/saveSelections',
-                  data: {"firstP": firstP, 
-                         "secondP": secondP,
-                         "thirdP": thirdP,
-                         "fourthP": fourthP}
-                });
-                console.log("Selection Saved!");
-                location.href = '/done';
-            } else {
-                alert("Can't use the same picks");
+                var firstP = document.getElementById("option1").value;
+                var secondP = document.getElementById("option2").value;
+                var thirdP = document.getElementById("option3").value;
+                var fourthP = document.getElementById("option4").value;
+
+                console.log(firstP, secondP, thirdP, fourthP);
+
+                if(firstP !== secondP && firstP !== thirdP && firstP !== fourthP &&  secondP !== thirdP && secondP !== fourthP 
+                     && thirdP !== fourthP ) {
+                    $.ajax({
+                      type:"GET",
+                      url: '/saveSelections',
+                      data: {"firstP": firstP, 
+                             "secondP": secondP,
+                             "thirdP": thirdP,
+                             "fourthP": fourthP}
+                    });
+                    swal(
+                      'Done!',
+                      'Your selection has been saved!',
+                      'success'
+                    );
+                    console.log("Selection Saved!");
+                    location.href = '/done';
+                }
+                else{
+                    swal(
+                        'Oops...',
+                        'Only one choice per option!',
+                        'error'
+                        );
+                }
             }
-        }
-        else{
-            
-        }
+        });
     }
     $(document).ready(function(){
         var name = window.location.search.split("studentNumber=")[1];

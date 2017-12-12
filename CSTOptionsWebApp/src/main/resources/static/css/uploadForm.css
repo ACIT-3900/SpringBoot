@@ -52,8 +52,14 @@
 }
 
 .fontSize {
-    font-size: 20px;
+    font-size: 30px;
+    margin-bottom: 25px;
 }
+
+.swal-modal {
+    padding: 20px;
+}
+
 #mainbody {
     margin: 0;
     padding: 0;

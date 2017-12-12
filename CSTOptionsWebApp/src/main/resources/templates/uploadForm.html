@@ -12,59 +12,44 @@
 		<div id="sidebar-wrapper" class="sidebar-toggle">
 			<ul class="sidebar-nav">
                 <li>
-                    <a href="#home">
-                        <div class='fontSize'>
-                            <form th:action="@{/admin}" method="post" >
-                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Home</button>
-                            </form>
-                        </div>
+                    <a href="/admin">
+                        <div class='fontSize'>Home</div>
                     </a>
                 </li>
 		    	<li>
-		      		<a href="#item1">
-                        <div class='fontSize'>
-                            <form th:action="@{/admin/upload}" method="post" >
-                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Upload</button>
-                            </form>
-                        </div>
+		      		<a href="/admin/upload">
+                        <div class='fontSize'>Upload</div>
                     </a>
 		    	</li>
 		    	<li>
-		      		<a href="#item2">
-                        <div class='fontSize'>
-                            <form th:action="@{/admin/viewStudents}" method="post" >
-                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">View Students</button>
-                            </form>
-                        </div>
+		      		<a href="/admin/viewStudents">
+                        <div class='fontSize'>View Students</div>
                     </a>
 		    	</li>
 		    	<li>
-		      		<a href="#item3">
-                        <div class='fontSize'>
-                            <form th:action="@{/admin/editStudents}" method="post" >
-                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Edit/Re-assign Students</button>
-                            </form></div>
+		      		<a href="/admin/editStudents">
+                        <div class='fontSize'>Edit/Re-assign Students</div>
                     </a>
 		    	</li>
                 <li>
-		      		<a href="#item4">
-                        <div class='fontSize'>
-                            <form th:action="@{/logout}" method="post">
-                                <button style="font-size:20px" type="submit" class="btn btn-default btn-large">Sign Out</button>
-                            </form>
-                        </div>
+		      		<a href="/logout">
+                        <div class='fontSize'>Sign Out</div>
                     </a>
 		    	</li>
 		  	</ul>
 		</div>
         <div>
             <form method="POST" enctype="multipart/form-data" action="/upload">
-                <font style="color:white; margin:10px;" class="fontSize">File to upload:</font><input class="form-control" type="file" name="file" />
+                <font style="color:white; margin:10px; font-size: 40px;" class="fontSize">File to upload:</font><input class="form-control" type="file" name="file" />
                 <br />
                 <br />
                 <input class="form-control" type="submit" value="Upload" />
             </form>
             <div><button id="generateBut" style="font-size:22px; margin-left: 40px" class="btn btn-default btn-large">GENERATE / PLACEMENT</button></div>
+            <form action="/files/StudentPlacement.csv">
+            <div><button id="downloadBut" style="font-size:22px; margin-left: 40px" class="btn btn-default btn-large" type="submit">DOWNLOAD RESULTS</button></div>
+            </form>
+            
         </div>
   	</div>
 </nav>
@@ -101,6 +86,22 @@
                 }
             })
         });
+        
+        document.getElementById("downloadBut").addEventListener("click", function(){
+            $.ajax({
+                url:"/files/StudentPlacement.csv",
+                type:"get",
+                success: function(resp){
+                    console.log(resp);
+                    swal({
+                      icon: 'success',
+                      title: 'Download has started',
+                      button: false,
+                      timer: 1500
+                    });
+                }
+            });
+        })
     /*]]>*/
     </script>
 </html>
