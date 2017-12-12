@@ -35,17 +35,17 @@ public class StudentDao {
 
         try
         {
-        	File studentHTML = new File ("./upload-dir/StudentPlacement.csv");
-        	PrintWriter pWriter = new PrintWriter (studentHTML);
+            File studentHTML = new File ("./upload-dir/StudentPlacement.csv");
+            PrintWriter pWriter = new PrintWriter (studentHTML);
 
             //Print Student List
             pWriter.println("ID,First Name,Last Name,Priority list,Status,Option Placement,First Choice,Second Choice,Third Choice,Fourth Choice");
 
             for(Student student : studentList){
-            	String studentName = student.getName();
-            	String[] firstLastName = studentName.split("\\s+");
-            	String studentChoices = student.printStudentChoices();
-            	String[] allChoices = studentChoices.split("/n");
+                String studentName = student.getName();
+                String[] firstLastName = studentName.split("\\s+");
+                String studentChoices = student.printStudentChoices();
+                String[] allChoices = studentChoices.split("/n");
 
                 pWriter.println(student.getID()+","+firstLastName[0]+","+firstLastName[1]+","+ student.getPriority()+","+ student.getStatus()+","+student.getAssignedOption()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
 
@@ -67,7 +67,7 @@ public class StudentDao {
         }
         catch(Exception ee){
             ee.printStackTrace();
-	        }
+        }
         return parsedStudentList;
     }
 
@@ -82,46 +82,46 @@ public class StudentDao {
 
         try {
 
-        //Reads files in
-        ReadStudentChoices(studentList, "upload-dir/StudentChoicesTeemo.csv");
-        ReadStudentGPA(studentList, "upload-dir/StudentGPATeemo.csv", studentIDList);
-        ReadOptionList(optionList, "upload-dir/OptionsSelectionTeemo.csv", optionNameList);
+            //Reads files in
+            ReadStudentChoices(studentList, "upload-dir/StudentChoices.csv");
+            ReadStudentGPA(studentList, "upload-dir/StudentGPA.csv", studentIDList);
+            ReadOptionList(optionList, "upload-dir/OptionSelectionControl.csv", optionNameList);
 
-        //Performs all functions required to sort students into their Option course
-        StudentPlacement place = new StudentPlacement(studentList, optionList);
-        place.studentPlacementSort();
+            //Performs all functions required to sort students into their Option course
+            StudentPlacement place = new StudentPlacement(studentList, optionList);
+            place.studentPlacementSort();
 
-        File studentHTML = new File ("./upload-dir/StudentPlacement.csv");
-        PrintWriter pWriter = new PrintWriter (studentHTML);
+            File studentHTML = new File ("./upload-dir/StudentPlacement.csv");
+            PrintWriter pWriter = new PrintWriter (studentHTML);
 
-        //Print Student List
-        pWriter.println("ID,First Name,Last Name,Priority list,Status,Option Placement,First Choice,Second Choice,Third Choice,Fourth Choice");
+            //Print Student List
+            pWriter.println("ID,First Name,Last Name,Priority list,Status,Option Placement,First Choice,Second Choice,Third Choice,Fourth Choice");
 
-        for(Student student : studentList){
-            String studentName = student.getName();
-            String[] firstLastName = studentName.split("\\s+");
-            String studentChoices = student.printStudentChoices();
-            String[] allChoices = studentChoices.split("/n");
+            for(Student student : studentList){
+                String studentName = student.getName();
+                String[] firstLastName = studentName.split("\\s+");
+                String studentChoices = student.printStudentChoices();
+                String[] allChoices = studentChoices.split("/n");
 
-            pWriter.println(student.getID()+","+firstLastName[0]+","+firstLastName[1]+","+ student.getPriority()+","+ student.getStatus()+","+student.getAssignedOption()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
+                pWriter.println(student.getID()+","+firstLastName[0]+","+firstLastName[1]+","+ student.getPriority()+","+ student.getStatus()+","+student.getAssignedOption()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
 
-            HashMap<String, String> studentInfo = new HashMap<>();
-            studentInfo.put("ID", student.getID());
-            studentInfo.put("Name", student.getName());
-            studentInfo.put("GPA", String.valueOf(student.getGPA()));
-            studentInfo.put("Priority", Integer.toString(student.getPriority()));
-            studentInfo.put("Status", student.getStatus());
-            studentInfo.put("AssignedOption", student.getAssignedOption());
-            studentInfo.put("StudentChoices", student.printStudentChoices());
+                HashMap<String, String> studentInfo = new HashMap<>();
+                studentInfo.put("ID", student.getID());
+                studentInfo.put("Name", student.getName());
+                studentInfo.put("GPA", String.valueOf(student.getGPA()));
+                studentInfo.put("Priority", Integer.toString(student.getPriority()));
+                studentInfo.put("Status", student.getStatus());
+                studentInfo.put("AssignedOption", student.getAssignedOption());
+                studentInfo.put("StudentChoices", student.printStudentChoices());
 
-            parsedStudentList.add(studentInfo);
-        }
+                parsedStudentList.add(studentInfo);
+            }
 
-        pWriter.close();
-        CheckOverFlow(studentList, optionList);
-        CheckInEligibleStudents(studentList);
+            pWriter.close();
+            CheckOverFlow(studentList, optionList);
+            CheckInEligibleStudents(studentList);
 
-        return "success";
+            return "success";
         } catch (Exception ee){
             ee.printStackTrace();
             return "failed";
@@ -253,19 +253,20 @@ public class StudentDao {
         }
     }
 
+
     public static Student searchById(String search){
         System.out.println("SEARCH:" + search);
 
-            for(Student student : studentList){
-                if(search.equals(student.getID())){
-                    System.out.println("Student exists");
-                    return student;
-                }
-                else {
-                    System.out.println("Didnt work LOL!");
-                }
+        for(Student student : studentList){
+            if(search.equals(student.getID())){
+                System.out.println("Student exists");
+                return student;
             }
-            return null;
+            else {
+                System.out.println("Didnt work LOL!");
+            }
+        }
+        return null;
     }
 
     //Prints all Options information
