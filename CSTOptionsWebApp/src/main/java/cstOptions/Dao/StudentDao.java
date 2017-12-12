@@ -39,7 +39,7 @@ public class StudentDao {
             PrintWriter pWriter = new PrintWriter (studentHTML);
 
             //Print Student List
-            pWriter.println("ID,First Name,Last Name,Priority list,Status,Option Placement,First Choice,Second Choice,Third Choice,Fourth Choice");
+            pWriter.println("ID,First Name,Last Name,Priority list,Status,GPA,Option Placement,First Choice,Second Choice,Third Choice,Fourth Choice");
 
             for(Student student : studentList){
                 String studentName = student.getName();
@@ -47,7 +47,7 @@ public class StudentDao {
                 String studentChoices = student.printStudentChoices();
                 String[] allChoices = studentChoices.split("/n");
 
-                pWriter.println(student.getID()+","+firstLastName[0]+","+firstLastName[1]+","+ student.getPriority()+","+ student.getStatus()+","+student.getAssignedOption()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
+                pWriter.println(student.getID()+","+firstLastName[0]+","+firstLastName[1]+","+ student.getPriority()+","+ student.getStatus()+","+student.getGPA()+","+student.getAssignedOption()+","+allChoices[0]+","+allChoices[1]+","+allChoices[2]+","+allChoices[3]);
 
                 HashMap<String, String> studentInfo = new HashMap<>();
                 studentInfo.put("ID", student.getID());
