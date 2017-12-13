@@ -70,6 +70,8 @@ Step 2 - Running the Web Server
 
 Congrats the program should be running without any error!
 
+Note: Files are located in Template Files folder for uploading, generating and placing students.
+
 
 ## HELP
 
