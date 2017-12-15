@@ -141,7 +141,7 @@ public class StudentDao {
 
             //Changes Option choice "Wait for January" to "Wait a term"
             if(optionInfo[0].split(" ")[0].equals("Wait")){
-                optionInfo[0] = "Wait a term";
+                optionInfo[0] = "Wait A Term";
             }
 
             //Save details and creates new Option object
