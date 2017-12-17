@@ -56,19 +56,17 @@ public class FileUploadController {
 	}
 
 	@PostMapping("/upload")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-		if (file.isEmpty()) {
-			redirectAttributes.addFlashAttribute("message", "No file selected, please select a .CSV file to upload!");
-		} 
-		
-		else if(fileExtensionCheck(file)) {
-			redirectAttributes.addFlashAttribute("message", "Only .csv files are accepted, please upload a file with the extension .csv");
-		} 
-		
-		else {
-			storageService.store(file);
-			redirectAttributes.addFlashAttribute("message",
-					"You successfully uploaded " + file.getOriginalFilename() + "!");
+	public String handleFileUpload(@RequestParam("file") MultipartFile[] file, RedirectAttributes redirectAttributes) {
+		for (MultipartFile uploadedFile : file) {
+			if (uploadedFile.isEmpty()) {
+				redirectAttributes.addFlashAttribute("message", "No file selected, please select a .CSV file to upload!");
+			} else if (fileExtensionCheck(uploadedFile)) {
+				redirectAttributes.addFlashAttribute("message", "Only .csv files are accepted, please upload a file with the extension .csv");
+			} else {
+				storageService.store(uploadedFile);
+				redirectAttributes.addFlashAttribute("message",
+						"You successfully uploaded " + uploadedFile.getOriginalFilename() + "!");
+			}
 		}
 		return "redirect:/upload";
 	}

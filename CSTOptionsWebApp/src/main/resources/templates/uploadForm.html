@@ -40,7 +40,7 @@
 		</div>
         <div>
             <form method="POST" enctype="multipart/form-data" action="/upload">
-                <font style="color:white; margin:10px; font-size: 40px;" class="fontSize">File to upload:</font><input class="form-control" type="file" name="file" />
+                <font style="color:white; margin:10px; font-size: 40px;" class="fontSize">File to upload:</font><input id="fileInput" class="form-control" type="file" name="file" onchange="updateName();" multiple=""/>
                 <br />
                 <br />
                 <input class="form-control" type="submit" value="Upload" />
@@ -50,6 +50,7 @@
             <div><button id="downloadBut" style="font-size:22px; margin-left: 40px" class="btn btn-default btn-large" type="submit">DOWNLOAD RESULTS</button></div>
             </form>
         </div>
+        <div id="listFiles" style="color:#4CAF50;"></div>
         <div id="unassignedStudents" style="color:white; display: none; width: 50%"></div>
   	</div>
 </nav>
@@ -57,10 +58,17 @@
 </body>
     <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-        $.ajax({
-            
-        })
-        
+        function updateName(){
+            var fileName;
+            allFiles = document.getElementById("fileInput").files;
+            console.log(allFiles);
+            var textDiv = document.createElement("div");
+            document.getElementById("listFiles").innerHTML = "";
+            for(var i=0; i<allFiles.length;i++){
+                textDiv.innerHTML += allFiles[i].name + '<br />';
+            }
+            document.getElementById("listFiles").appendChild(textDiv);
+        }
         
         document.getElementById("generateBut").addEventListener("click", function(){
             $.ajax({
