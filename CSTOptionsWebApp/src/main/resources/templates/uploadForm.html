@@ -50,8 +50,8 @@
             <div><button id="downloadBut" style="font-size:22px; margin-left: 40px" class="btn btn-default btn-large" type="submit">DOWNLOAD RESULTS</button></div>
             </form>
         </div>
-        <div id="listFiles" style="color:#4CAF50;"></div>
-        <div id="unassignedStudents" style="color:white; display: none; width: 50%"></div>
+        <div id="listFiles" style="color:#4CAF50; font-size: 18px;"></div>
+        <div id="unassignedStudents" style="color:white; display: none; padding-left:25%"></div>
   	</div>
 </nav>
     
@@ -96,7 +96,7 @@
                                     warningFont.innerHTML = "WARNING! ";
                                     document.getElementById("unassignedStudents").appendChild(warningFont);
                                     document.getElementById("unassignedStudents").innerHTML += "The following student(s) did not get placed: " + "<br />" + resp;
-                                    document.getElementById("unassignedStudents").style.display = "inline-block";
+                                    document.getElementById("unassignedStudents").style.display = "block";
                                 } else {
                                     console.log(resp)
                                 }
