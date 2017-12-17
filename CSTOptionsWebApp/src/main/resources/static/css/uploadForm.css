@@ -50,16 +50,13 @@
     align-items: center;
     justify-content: center;
 }
-
 .fontSize {
     font-size: 24px;
     margin-bottom: 25px;
 }
-
 .swal-modal {
     padding: 20px;
 }
-
 #mainbody {
     margin: 0;
     padding: 0;

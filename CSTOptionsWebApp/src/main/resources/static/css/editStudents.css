@@ -47,7 +47,6 @@
 .navbar>.container, .navbar>.container-fluid {
     justify-content: center;
 }
-
 .fontSize {
     font-size: 24px;
     margin-bottom: 25px;
@@ -61,52 +60,29 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
-
 th, td {
     text-align: left;
     padding: 8px;
 }
-
-tr:nth-child(even){background-color: #ffffff}
-
+tr:nth-child(even){
+    background-color: #ffffff
+}
 th {
     background-color: #262626;
     color: white;
 }
-
 * {
     box-sizing: border-box;
 }
-
-/* Create two equal columns that floats next to each other */
-.column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
 .swal-modal {
     padding: 20px;
 }
-
 #stuContainer {
     border: 1px solid grey;
     width: 55vw;
     height: 70vh;
     overflow: auto;
     margin: auto;
-}
-#starter-template {
-    margin-top: 30px;
-    margin-left: 15px;
 }
 .btn{
     color: #fff;
@@ -117,9 +93,6 @@ th {
     color: #fff;
     background-color: #F89E3F;
     border-color: #F89E3F; /*set the color you want here*/
-}
-form {
-    padding: 1em;
 }
 #inputID {
     width: 30%;

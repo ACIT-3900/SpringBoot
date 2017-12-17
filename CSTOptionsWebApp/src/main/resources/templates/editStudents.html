@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="/css/editStudents.css" />
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -40,35 +39,35 @@
 		    	</li>
 		  	</ul>
 		</div>
-        <div id="container2">
-            <div id="editDiv">
-            <font style="font-size: 22px; color:white;">Enter ID: </font><input id="inputID" class="centered" palceholder="BCIT ID" name="studentNumber" type="text" title="Enter an A00 Number" pattern="A+[0-9]{8}" required="required" autofocus="true" />    
-            <br />
-            <button id="addBut" class="btn btn-default btn-large" style="float:left">Add Student</button>
-            <button id="dropBut" class="btn btn-default btn-large" style="margin-left: 10px;">Drop Student</button>
-            <br />
-            <br />
-            <select id="optionSelect" style="float:left"></select> 
-            <br />
-            <br />
-            <button id="updateBut" class="btn btn-default btn-large" style="float:left">Update</button>
-            <br />
-            <br />
+        <div>
+            <div>
+                <font style="font-size: 22px; color:white;">Enter ID: </font><input id="inputID" class="centered" palceholder="BCIT ID" name="studentNumber" type="text" title="Enter an A00 Number" pattern="A+[0-9]{8}" required="required" autofocus="true" />    
+                <br />
+                <button id="addBut" class="btn btn-default btn-large" style="float:left">Add Student</button>
+                <button id="dropBut" class="btn btn-default btn-large" style="margin-left: 10px;">Drop Student</button>
+                <br />
+                <br />
+                <select id="optionSelect" style="float:left"></select> 
+                <br />
+                <br />
+                <button id="updateBut" class="btn btn-default btn-large" style="float:left">Update</button>
+                <br />
+                <br />
                 <div id="maxCapacity" style="color:white; float:left"></div>
                 <div id="emptySeats" style="color:white; float:right"></div>
                 <h2 style="color:white; text-align:center">Class List</h2>
 
                 <div id="stuContainer">
-                <table id="stuTable" style="border: 1px solid black;">
-                    <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>GPA</th>
-                    <th>Priority</th>
-                    <th>Status</th>
-                    <th>Assigned Option</th>
-                    <th>Student Choices</th>
-                  </tr>
+                    <table id="stuTable" style="border: 1px solid black;">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>GPA</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Assigned Option</th>
+                            <th>Student Choices</th>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -76,7 +75,6 @@
   	</div>
 </nav>
 
-<!-- /.container -->
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
 $(document).ready(function() {
@@ -151,10 +149,10 @@ $(document).ready(function() {
                       selection.appendChild(option)
                   } 
 
-              }
-            });
-        }
-});
+                }
+                });
+            }
+        });
     
         updateBut.addEventListener("click", function(){
           $.ajax({
@@ -254,7 +252,7 @@ $(document).ready(function() {
                           timer: 1500
                         });
                       }
-              }
+                    }
             });
         });
     });

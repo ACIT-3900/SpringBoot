@@ -3,52 +3,45 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="/css/admin.css"/>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body id="mainbody">
     <nav class="navbar navbar-default" role="navigation">
-	<div class="container">
-		<div id="sidebar-wrapper" class="sidebar-toggle">
-			<ul class="sidebar-nav">
-                <li>
-                    <a href="/admin">
-                        <div class='fontSize'>Home</div>
-                    </a>
-                </li>
-		    	<li>
-		      		<a href="/admin/upload">
-                        <div class='fontSize'>Upload</div>
-                    </a>
-		    	</li>
-		    	<li>
-		      		<a href="/admin/viewStudents">
-                        <div class='fontSize'>View Students</div>
-                    </a>
-		    	</li>
-		    	<li>
-		      		<a href="/admin/editStudents">
-                        <div class='fontSize'>Edit/Re-assign Students</div>
-                    </a>
-		    	</li>
-                <li>
-		      		<a href="/logout">
-                        <div class='fontSize'>Sign Out</div>
-                    </a>
-		    	</li>
-		  	</ul>
-		</div>
-        <div style="color:white; font-size:64px; margin-left: 20%">
-            Home Page
+        <div class="container">
+            <div id="sidebar-wrapper" class="sidebar-toggle">
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="/admin">
+                            <div class='fontSize'>Home</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/upload">
+                            <div class='fontSize'>Upload</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/viewStudents">
+                            <div class='fontSize'>View Students</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/editStudents">
+                            <div class='fontSize'>Edit/Re-assign Students</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/logout">
+                            <div class='fontSize'>Sign Out</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div style="color:white; font-size:64px; margin-left: 20%">
+                Home Page
+            </div>
+            <div id="image-inst"></div>
         </div>
-        <div id="image-inst"></div>
-  	</div>
-</nav>
-
-<script type="text/javascript" th:inline="javascript">
-    /*<![CDATA[*/
-    /*]]>*/
-    </script>
+    </nav>
 </body>
 </html>

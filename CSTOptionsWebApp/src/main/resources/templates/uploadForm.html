@@ -40,7 +40,7 @@
 		</div>
         <div>
             <form method="POST" enctype="multipart/form-data" action="/upload">
-                <font style="color:white; margin:10px; font-size: 40px;" class="fontSize">File to upload:</font><input class="form-control" type="file" name="file" />
+                <font style="color:white; margin:10px; font-size: 40px;" class="fontSize">File to upload:</font><input id="fileInput" class="form-control" type="file" name="file" onchange="updateName();" multiple=""/>
                 <br />
                 <br />
                 <input class="form-control" type="submit" value="Upload" />
@@ -49,18 +49,26 @@
             <form action="/files/StudentPlacement.csv">
             <div><button id="downloadBut" style="font-size:22px; margin-left: 40px" class="btn btn-default btn-large" type="submit">DOWNLOAD RESULTS</button></div>
             </form>
-            
         </div>
+        <div id="listFiles" style="color:#4CAF50; font-size: 18px;"></div>
+        <div id="unassignedStudents" style="color:white; display: none; padding-left:25%"></div>
   	</div>
 </nav>
     
 </body>
     <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-        $.ajax({
-            
-        })
-        
+        function updateName(){
+            var fileName;
+            allFiles = document.getElementById("fileInput").files;
+            console.log(allFiles);
+            var textDiv = document.createElement("div");
+            document.getElementById("listFiles").innerHTML = "";
+            for(var i=0; i<allFiles.length;i++){
+                textDiv.innerHTML += allFiles[i].name + '<br />';
+            }
+            document.getElementById("listFiles").appendChild(textDiv);
+        }
         
         document.getElementById("generateBut").addEventListener("click", function(){
             $.ajax({
@@ -75,6 +83,26 @@
                           button: false,
                           timer: 1500
                         });
+                        
+                        $.ajax({
+                            url:"/students/unassignedStudents",
+                            type:"get",
+                            success:function(resp){
+                                if(resp.length > 36){
+                                    document.getElementById("unassignedStudents").innerHTML = "";
+                                    var warningFont = document.createElement("font");
+                                    warningFont.style.color = "red";
+                                    warningFont.style.fontSize = "24px";
+                                    warningFont.innerHTML = "WARNING! ";
+                                    document.getElementById("unassignedStudents").appendChild(warningFont);
+                                    document.getElementById("unassignedStudents").innerHTML += "The following student(s) did not get placed: " + "<br />" + resp;
+                                    document.getElementById("unassignedStudents").style.display = "block";
+                                } else {
+                                    console.log(resp)
+                                }
+                            }
+                        })
+                        
                       } else {
                           swal({
                           icon: 'error',
