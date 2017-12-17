@@ -49,8 +49,8 @@
             <form action="/files/StudentPlacement.csv">
             <div><button id="downloadBut" style="font-size:22px; margin-left: 40px" class="btn btn-default btn-large" type="submit">DOWNLOAD RESULTS</button></div>
             </form>
-            
         </div>
+        <div id="unassignedStudents" style="color:white; display: none; width: 50%"></div>
   	</div>
 </nav>
     
@@ -75,6 +75,26 @@
                           button: false,
                           timer: 1500
                         });
+                        
+                        $.ajax({
+                            url:"/students/unassignedStudents",
+                            type:"get",
+                            success:function(resp){
+                                if(resp.length > 36){
+                                    document.getElementById("unassignedStudents").innerHTML = "";
+                                    var warningFont = document.createElement("font");
+                                    warningFont.style.color = "red";
+                                    warningFont.style.fontSize = "24px";
+                                    warningFont.innerHTML = "WARNING! ";
+                                    document.getElementById("unassignedStudents").appendChild(warningFont);
+                                    document.getElementById("unassignedStudents").innerHTML += "The following student(s) did not get placed: " + "<br />" + resp;
+                                    document.getElementById("unassignedStudents").style.display = "inline-block";
+                                } else {
+                                    console.log(resp)
+                                }
+                            }
+                        })
+                        
                       } else {
                           swal({
                           icon: 'error',

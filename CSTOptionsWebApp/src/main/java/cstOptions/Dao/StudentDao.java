@@ -27,6 +27,8 @@ public class StudentDao {
     private static Set<String> optionNameList = new HashSet<>();
     //Set List of Student IDs
     private static Set<String> studentIDList = new HashSet<>();
+    //ArrayList of Student Objects that did not get placed
+    private static ArrayList<Student> unassignedList = new ArrayList<>();
 
 
     public ArrayList<HashMap<String, String>> getAllStudents(){
@@ -63,7 +65,7 @@ public class StudentDao {
 
             pWriter.close();
             CheckOverFlow(studentList, optionList);
-            CheckInEligibleStudents(studentList);
+            CheckInEligibleStudents();
         }
         catch(Exception ee){
             ee.printStackTrace();
@@ -119,7 +121,7 @@ public class StudentDao {
 
             pWriter.close();
             CheckOverFlow(studentList, optionList);
-            CheckInEligibleStudents(studentList);
+            CheckInEligibleStudents();
 
             return "success";
         } catch (Exception ee){
@@ -241,15 +243,29 @@ public class StudentDao {
     }
 
     //Prints out all students who are ineligible
-    private static void CheckInEligibleStudents(ArrayList<Student> stulist){
+    public String CheckInEligibleStudents(){
+        unassignedList.clear();
         System.out.println("Ineligible Students:");
-        for(Student stu:stulist){
+        for(Student stu:studentList){
             if(stu.getPointChecker() == 1){
                 System.out.println("Student ID: " + stu.getID());
                 System.out.println("Student Name: " + stu.getName());
                 System.out.println("Reason: " + stu.getReason());
                 System.out.println();
             }
+            if(stu.getAssignedOption().equals("")){
+                stu.setReason("Options ranked are fewer than Options available");
+                unassignedList.add(stu);
+            }
+        }
+        if(unassignedList.size()==0){
+            return "All students got assigned an Option";
+        } else {
+            String unassignedString = "";
+            for(Student stu : unassignedList){
+                unassignedString += "<br />ID: " + stu.getID() + "<br />Name: " + stu.getName() + "<br />GPA: " + stu.getGPA() + "<br />Priority: " + stu.getPriority() + "<br />Option selection: " + stu.getStudentChoices() + "<br />Reason: " + stu.getReason();
+            }
+            return unassignedString;
         }
     }
 

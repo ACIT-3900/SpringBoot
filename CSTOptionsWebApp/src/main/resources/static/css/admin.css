@@ -44,14 +44,12 @@
     left: 200px;
   }
 }
-
 .navbar>.container{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
-
 .fontSize {
     font-size: 24px;
     margin-bottom: 25px;
@@ -61,18 +59,6 @@
     padding: 0;
     background-color: #262626;
 }
-
-.btn{
-    color: #fff;
-    background-color: #F57C00;
-    border-color: #F57C00; /*set the color you want here*/
-}
-.btn:hover, .btn:focus, .btn:active, .open>.dropdown-toggle.btn {
-    color: #fff;
-    background-color: #F89E3F;
-    border-color: #F89E3F; /*set the color you want here*/
-}
-
 #image-inst {
     position:absolute;
     top:100%;

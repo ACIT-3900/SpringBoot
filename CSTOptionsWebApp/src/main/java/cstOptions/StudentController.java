@@ -50,4 +50,7 @@ public class StudentController {
         return studentDao.ViewOptions();
     }
 
+    @RequestMapping(value = "/unassignedStudents", method = RequestMethod.GET)
+    public String CheckInEligibleStudents(){ return studentDao.CheckInEligibleStudents(); }
+
 }
